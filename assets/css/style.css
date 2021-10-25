@@ -1008,7 +1008,7 @@ p {
     }
 }
 
-@media only screen and (min-width: 0px) and (max-width: 589px) {
+@media only screen and (min-width: 450px) and (max-width: 589px) {
     .header-hero-content .header-title {
         font-size: 17px;
     }
@@ -1017,6 +1017,18 @@ p {
     }
     .header-hero-content {
         padding-top: 190px;
+    }
+}
+
+@media only screen and (min-width: 0px) and (max-width: 449px) {
+    .header-hero-content .header-title {
+        font-size: 17px;
+    }
+    .header-hero-content .header-sub-title {
+        font-size: 17px;
+    }
+    .header-hero-content {
+        padding-top: 120px;
     }
 }
 
