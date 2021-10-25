@@ -15,7 +15,7 @@ $(function () {
         var scroll = $(window).scrollTop();
         if (scroll < 20) {
             $(".navbar-area").removeClass("sticky");
-            $(".navbar .navbar-brand img").attr("src", "assets/images/logo/logo_laranja_branco.svg");
+            $(".navbar .navbar-brand img").attr("src", "assets/images/logo/fundo_branco.svg");
         } else {
             $(".navbar-area").addClass("sticky");
             $(".navbar .navbar-brand img").attr("src", "assets/images/logo/logo_2.svg");

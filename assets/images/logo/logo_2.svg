@@ -32,9 +32,10 @@
      showgrid="false"
      inkscape:window-width="1536"
      inkscape:window-height="864"
-     inkscape:window-x="2615"
-     inkscape:window-y="256"
-     inkscape:window-maximized="0" />
+     inkscape:window-x="2119"
+     inkscape:window-y="91"
+     inkscape:window-maximized="0"
+     inkscape:snap-text-baseline="false" />
   <metadata
      id="metadata1168">
     <rdf:RDF>
@@ -43,7 +44,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title />
+        <dc:title></dc:title>
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -73,20 +74,26 @@
          style="fill:#ffffff;fill-rule:evenodd;stroke-width:0.321566;fill-opacity:1" />
       <text
          xml:space="preserve"
-         style="font-style:normal;font-weight:normal;font-size:63.3693px;line-height:1.25;font-family:sans-serif;text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#0175a4;fill-opacity:1;stroke:none;stroke-width:1.58423;"
-         x="880.6059"
-         y="-101.25329"
+         style="font-style:normal;font-weight:normal;font-size:54.5751px;line-height:1.25;font-family:Poppins;text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#0175a4;fill-opacity:1;stroke:none;stroke-width:1.58423;"
+         x="870.47156"
+         y="-99.3106"
          id="text896"><tspan
            sodipodi:role="line"
            id="tspan892"
-           x="880.6059"
-           y="-101.25329"
-           style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:'Calisto MT';-inkscape-font-specification:'Calisto MT Bold';text-align:center;text-anchor:middle;fill:#0175a4;stroke-width:1.58423;fill-opacity:1;">Urban Computing</tspan><tspan
+           x="870.47156"
+           y="-99.3106"
+           style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:54.5751px;font-family:Tahoma;-inkscape-font-specification:'Tahoma Bold';text-align:center;text-anchor:middle;fill:#0175a4;stroke-width:1.58423;fill-opacity:1;">Urban Computing</tspan><tspan
            sodipodi:role="line"
-           x="880.6059"
-           y="-21.243164"
-           style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:'Calisto MT';-inkscape-font-specification:'Calisto MT Bold';text-align:center;text-anchor:middle;fill:#0175a4;stroke-width:1.58423;fill-opacity:1;"
+           x="870.47156"
+           y="-29.587379"
+           style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:54.5751px;font-family:Tahoma;-inkscape-font-specification:'Tahoma Bold';text-align:center;text-anchor:middle;fill:#0175a4;stroke-width:1.58423;fill-opacity:1;"
            id="tspan894">Lab</tspan></text>
+      <circle
+         style="fill:#0175a4;fill-opacity:1;stroke:#ffaa4d;stroke-width:0;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+         id="circle886-5"
+         cx="419.39325"
+         cy="-302.10449"
+         r="87.578827" />
     </g>
   </g>
 </svg>
