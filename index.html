@@ -866,13 +866,44 @@
 
     var cite = new Cite("https://urbcomp-lab.github.io/assets/library.bib", opt);
     cite.sort((entry1, entry2) => {
-         return entry2.issued['date-parts'][0][0]-entry1.issued['date-parts'][0][0]
+         return entry1.issued['date-parts'][0][0]-entry2.issued['date-parts'][0][0]
     })
-    $('#bibx-out').html(cite.format('bibliography',{
+
+    var citeByYerar = cite.data.reduce((s,item)=>{
+            if(!s[item.issued['date-parts'][0][0]])
+                s[item.issued['date-parts'][0][0]] = [item]
+            else
+                s[item.issued['date-parts'][0][0]].push(item)
+            return s;},
+        {});
+
+    Object.entries(citeByYerar).forEach((value, key) => {
+        let yearElement = $("<div></div>");
+        yearElement.attr('data-type','bib');
+        bibYear = new Cite(value[1]);
+        bibYear.sort((entry1, entry2) => {
+            return entry1.issued['date-parts'][0][0]-entry2.issued['date-parts'][0][0]
+        })
+
+        yearElement.html(bibYear.format('bibliography',{
+            format: 'html',
+            template: 'custom',
+            nosort:true
+        }))
+
+        var title = "<div class=\"row justify-content-center\">\n    <div class=\"col-lg-10\">\n        <div class=\"section-title text-center pb-20\">\n            <h3 class=\"title\">:year</span></h3>\n            <div class=\"line m-auto\"></div>\n        </div> <!-- section title -->\n    </div>\n</div> <!-- row -->"
+        title = title.replace(':year', value[0]);
+        let titleElement = $(title);
+        $('#bibx-out').prepend(yearElement)
+        $('#bibx-out').prepend(titleElement)
+
+    });
+
+    /*$('#bibx-out').html(cite.format('bibliography',{
         format: 'html',
         template: 'custom',
         nosort:true
-    }));
+    }));*/
 </script>
 </body>
 
