@@ -17,4 +17,3 @@ jobs:
         username: ${{ secrets.FTP_USERNAME }}
         password: ${{ secrets.FTP_PASSWORD }}
         server-dir: /sharedirs/sharedir0/leonan.teixeira/public_html/
-        log-level: verbose
