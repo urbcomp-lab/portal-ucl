@@ -130,7 +130,7 @@
 
         <div id="home" class="header-hero bg_cover">
             <div id="particles-1" class="particles"></div>
-            <video playsinline autoplay muted loop id="bgvideo" poster="assets/images/videos/cover.jpg" width="100%" height="auto">
+            <video playsinline autoplay muted loop id="bgvideo" poster="assets/images/videos/cover.png" width="100%" height="auto">
                 <source src="assets/images/videos/video3.mp4" type="video/mp4">
             </video>
             <div style="position:absolute;margin-left: 0; margin-right: 0; top: 0; text-align: center; width: 100%">
@@ -709,7 +709,8 @@
         style: 'citation-apa'
     }
 
-    var cite = new Cite("https://urbcomp-lab.github.io/assets/library.bib", opt);
+    //var cite = new Cite("https://raw.githubusercontent.com/urbcomp-lab/urbcomp-lab.github.io/main/assets/library.bib", opt);
+    var cite = new Cite("https://raw.githubusercontent.com/Eonassis/ionlab.github.io/main/assets/library.bib", opt);
     cite.sort((entry1, entry2) => {
          return entry1.issued['date-parts'][0][0]-entry2.issued['date-parts'][0][0]
     })
