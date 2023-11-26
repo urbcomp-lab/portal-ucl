@@ -24,6 +24,12 @@ jobs:
         cd ../../
         node bibToJSON.js publications.bib > publications.json
 
+    - name: Install PHP dependencies
+      uses: "shivammathur/setup-php@v2"
+      with:
+        php-version: "8.1"
+      uses: "ramsey/composer-install@v2"
+        
     - name: 📂 Sync files
       uses: SamKirkland/FTP-Deploy-Action@4.1.0
       with:
