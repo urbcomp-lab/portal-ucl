@@ -1,1 +1,9 @@
 /.idea/
+
+/vendor/
+/lattes/
+/node_modules/
+package-lock.json
+composer.lock
+publications.bib
+publications.json
