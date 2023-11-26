@@ -4,7 +4,9 @@ $(function () {
 
     //===== Prealoder
 
+    debugger;
     $(window).on('load', function (event) {
+        debugger;
         $('.preloader').delay(500).fadeOut(500);
     });
 
