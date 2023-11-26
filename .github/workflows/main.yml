@@ -36,6 +36,7 @@ jobs:
         }' index.php
         rm -rf lattes
         rm -rf vendor
+        rm -rf node_modules
 
     - name: 📂 Sync files
       uses: SamKirkland/FTP-Deploy-Action@4.1.0
