@@ -8,7 +8,13 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: 🚚 Get latest code
-      uses: actions/checkout@v2
+      uses: actions/checkout@v2    
+
+    - uses: "shivammathur/setup-php@v2"
+      with:
+        php-version: "8.1"
+        extensions: curl, fileinfo, intl, mbstring, openssl
+    - uses: "ramsey/composer-install@v2"            
     
     - name: 📚 Prepare bib file
       run: |
@@ -23,13 +29,14 @@ jobs:
         cp curriculo.bib ../../publications.bib
         cd ../../
         node bibToJSON.js publications.bib > publications.json
+        php -f publications.php > publications.html
+        sed -i '/<?php include "publications.php" ?>/{
+          r publications.html
+          d
+        }' index.php
+        rm -rf lattes
+        rm -rf vendor
 
-    - uses: "shivammathur/setup-php@v2"
-      with:
-        php-version: "8.1"
-        extensions: curl, fileinfo, intl, mbstring, openssl
-    - uses: "ramsey/composer-install@v2"        
-        
     - name: 📂 Sync files
       uses: SamKirkland/FTP-Deploy-Action@4.1.0
       with:
