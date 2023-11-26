@@ -20,7 +20,7 @@ jobs:
         cd SLattes
         xsltproc lattes2mods.xsl ../../curriculo.xml > curriculo.mods
         xml2bib -b -w curriculo.mods > curriculo.bib
-        cp publications.bib ../../publications.bib
+        cp curriculo.bib ../../publications.bib
         cd ../../
         node bibToJSON.js publications.bib > publications.json
 
