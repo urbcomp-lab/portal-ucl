@@ -13,8 +13,7 @@ try {
     $bibliography = $citeProc->render($data, "bibliography");
     $cssStyles = $citeProc->renderCssStyles();
 } catch (Exception $e) {
-    echo $e->getMessage();
-    die;
+    echo "Error loading papers\n";
 }
 
 $bibliography; ?>
