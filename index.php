@@ -405,7 +405,7 @@
                                 <ul>
                                     <li><a target="_blank" href="http://lattes.cnpq.br/6302145498637257"><i class="ai ai-lattes"></i></a>
                                     </li>
-                                    <li><a target="_blank" href="https://linkedin.com/in/mariese-conceição-77279b27"><i
+                                    <li><a target="_blank" href="https://www.linkedin.com/in/marieseconceição"><i
                                             class="lni-linkedin-original"></i></a></li>
                                 </ul>
                             </div>
@@ -657,7 +657,7 @@
                     <div class="col-lg-12">
                         <div class="copyright d-sm-flex justify-content-between">
                             <div class="copyright-content">
-                                <p class="text">Â© 2021 <strong>Urban Computing Lab</strong>.</p>
+                                <p class="text">© 2021 <strong>Urban Computing Lab</strong>.</p>
                             </div> <!-- copyright content -->
                         </div> <!-- copyright -->
                     </div>
