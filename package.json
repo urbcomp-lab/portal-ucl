@@ -1,0 +1,9 @@
+{
+  "name": "UCL-Portal",
+  "version": "1.0.0",
+  "description": "UCL-Portal",
+  "type": "module",
+  "dependencies": {
+    "astrocite": "^0.16.4"    
+  }
+}
