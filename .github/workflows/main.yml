@@ -34,9 +34,6 @@ jobs:
           r publications.html
           d
         }' index.php
-        rm -rf lattes
-        rm -rf vendor
-        rm -rf node_modules
 
     - name: 📂 Sync files
       uses: SamKirkland/FTP-Deploy-Action@4.1.0
@@ -45,3 +42,13 @@ jobs:
         username: ${{ secrets.FTP_USERNAME }}
         password: ${{ secrets.FTP_PASSWORD }}
         server-dir: /sharedirs/sharedir0/leonan.teixeira/public_html/
+        exclude: |
+          .git/**
+          .git**
+          .git*/**
+          **/.git*
+          **/.git*/**
+          **/node_modules/**
+          **/lattes**
+          **/vendor/**
+          fileToExclude.txt
