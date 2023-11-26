@@ -3,13 +3,9 @@ $(function () {
     "use strict";
 
     //===== Prealoder
-
-    debugger;
     $(window).on('load', function (event) {
-        debugger;
         $('.preloader').delay(500).fadeOut(500);
     });
-
 
     //===== Sticky
 
@@ -23,8 +19,6 @@ $(function () {
             $(".navbar .navbar-brand img").attr("src", "assets/images/logo/fundo_azul.svg");
         }
     });
-
-
 
     //===== Section Menu Active
 
@@ -44,7 +38,6 @@ $(function () {
         });
     });
 
-
     //===== close navbar-collapse when a  clicked
 
     $(".navbar-nav a").on('click', function () {
@@ -59,14 +52,12 @@ $(function () {
         $(".navbar-toggler").removeClass('active');
     });    
     
-
     //====== Magnific Popup
 
     $('.video-popup').magnificPopup({
         type: 'iframe'
         // other options
     });
-
 
     //===== Magnific Popup
 
@@ -77,14 +68,12 @@ $(function () {
         }
     });
 
-
     //===== Counter Up
 
     $('.counter').counterUp({
         delay: 10,
         time: 3000
     });
-
 
     //===== testimonial active
 
@@ -137,7 +126,6 @@ $(function () {
         }
     });
 
-
     //Animate the scroll to yop
     $('.back-to-top').on('click', function (event) {
         event.preventDefault();
@@ -154,8 +142,6 @@ $(function () {
 
 
     //=====  particles
-
-
     if (document.getElementById("particles-1")) particlesJS("particles-1", {
         "particles": {
             "number": {
@@ -377,10 +363,5 @@ $(function () {
         },
         "retina_detect": true
     });
-
-
-
-
-
 
 });
