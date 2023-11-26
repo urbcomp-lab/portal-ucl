@@ -24,11 +24,11 @@ jobs:
         cd ../../
         node bibToJSON.js publications.bib > publications.json
 
-    - name: Install PHP dependencies
-      uses: "shivammathur/setup-php@v2"
+    - uses: "shivammathur/setup-php@v2"
       with:
         php-version: "8.1"
-      uses: "ramsey/composer-install@v2"
+        extensions: mbstring, zip, intl, xml, curl, gd, exif, dom, fileinfo, json, pdo,tokenizer, xmlwriter, xmlreader, xsl, zip, ftp, imap, ldap, sockets, imagick, mcrypt, memcached, mongodb, redis, ssh2, tidy, yaml, opcache, intl, bcmath, calendar, gettext, gmp, iconv, pcntl, pdo_dblib, pdo_firebird, pdo_odbc, pdo_pgsql, pdo_sqlsrv, pgsql, pspell, recode, snmp, soap, sodium, sqlite, sysvmsg, sysvsem, sysvshm, wddx, xdebug, xmlrpc, xsl, zend_test, apcu, ast, ds, ev, event, inotify, lzf, mailparse, memcache, msgpack, oauth, propro, raphf, rdkafka, redis, ssh2, stomp, timezonedb, uopz, uuid, xdebug, xhprof, yaml, yar, zendopcache, zmq, amqp, apcu_bc, apfd, bitset, blackfire, bcompiler, blenc, bz2_filter, coin_acceptor, crack, datadog_trace, enchant, fann, gearman, geoip, gnupg, gnupg2, grpc, gupnp, hprose, igbinary, imagick, inotify, intl, jsmin, json_post, jsonc, jsond, jsonlint, kerberos, lzf, mailparse, maxminddb, mcrypt, memcache, memcached, mongodb, msgpack, mssql, mysql, mysqli, oauth, oci8, odbc, opcache, pdf, pdo_dblib, pdo_firebird, pdo_mysql, pdo_odbc, pdo_pgsql, pdo_sqlite, pgsql, phalcon, phpiredis, pinba, propro, ps, pspell, radius, rar, rdkafka, recode, redis, rrd, rrdtool, rrdtool1, rrdtool2, rrdtool3, rrdtool4, rrdtool5, rrdtool6, rrdtool7, rrd
+    - uses: "ramsey/composer-install@v2"        
         
     - name: 📂 Sync files
       uses: SamKirkland/FTP-Deploy-Action@4.1.0
