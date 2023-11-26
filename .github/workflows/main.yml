@@ -10,6 +10,20 @@ jobs:
     - name: 🚚 Get latest code
       uses: actions/checkout@v2
     
+    - name: 📚 Prepare bib file
+      run: |
+        npm install
+        sudo apt install xsltproc libxml2-utils bibutils bibtool -y
+        mkdir lattes
+        cd lattes
+        git clone https://github.com/urbcomp-lab/SLattes.git
+        cd SLattes
+        xsltproc lattes2mods.xsl ../../curriculo.xml > curriculo.mods
+        xml2bib -b -w curriculo.mods > curriculo.bib
+        cp publications.bib ../../publications.bib
+        cd ../../
+        node bibToJSON.js publications.bib > publications.json
+
     - name: 📂 Sync files
       uses: SamKirkland/FTP-Deploy-Action@4.1.0
       with:
