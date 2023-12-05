@@ -675,7 +675,7 @@
                                 <img src="assets/images/logo/fundo_branco.svg" alt="UCG">
                             </a>
                             <p class="text">UFBA - Federal University of Bahia <br>
-                                IC - Computer Institute<br>
+                                IC - Institute of Computing<br>
                                 Salvador - BA<br>
                                 Contact: maycon.leone at ufba.br
                             </p>
