@@ -430,7 +430,7 @@
                         </div>
                         <div class="team-content">
                             <h5 class="holder-name"><a href="#">Adriano Maia</a></h5>
-                            <p class="text">PhD Student</p>
+                            <p class="text">PhD Candidate</p>
                         </div>
                     </div> <!-- single team -->
                 </div>
