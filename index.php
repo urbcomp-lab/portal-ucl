@@ -429,8 +429,8 @@
                             </div>
                         </div>
                         <div class="team-content">
-                            <h5 class="holder-name"><a href="#">Adriano</a></h5>
-                            <p class="text">Master's Degree Candidate</p>
+                            <h5 class="holder-name"><a href="#">Adriano Maia</a></h5>
+                            <p class="text">PhD Student</p>
                         </div>
                     </div> <!-- single team -->
                 </div>
@@ -581,7 +581,7 @@
                         <div class="team-image">
                             <img src="assets/images/team/giselly.jpg" alt="Team">
                             <div class="social">
-                                <ul>
+                            git commit -m "Adicionando o arquivo readme.md"        <ul>
                                     <li><a target="_blank" href="http://lattes.cnpq.br/2125747522088544"><i class="ai ai-lattes"></i></a>
                                     </li>
                                     <li><a target="_blank" href="https://www.linkedin.com/in/giselly-reis-b86bb0172/"><i
