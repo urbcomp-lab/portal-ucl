@@ -531,7 +531,7 @@
                         </div>
                         <div class="team-content">
                             <h5 class="holder-name"><a href="#">Marcus Freire</a></h5>
-                            <p class="text">Master's Degree Candidate</p>
+                            <p class="text">Master's Degree</p>
                         </div>
                     </div> <!-- single team -->
                 </div>
