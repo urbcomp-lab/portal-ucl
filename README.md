@@ -25,3 +25,60 @@ The workflow script will automatically convert the XML file to JSON and update t
 2. Then, the script use the [astrocite-bibtex](https://github.com/dsifford/astrocite) tool to convert the BibTeX file to [CSL JSON](https://github.com/citation-style-language/schema).
 
 3. Finally, we use the [seboettg/citeproc-php](https://github.com/seboettg/citeproc-php) to render the CSL JSON file to HTML.
+
+## Local Development Setup
+
+Follow these instructions to get the project running on your local machine for development and testing purposes.
+
+### 1. Prerequisites
+
+Before you begin, ensure you have the following installed on your system. This project requires dependencies for both PHP (backend) and JavaScript (frontend).
+
+- **PHP**: Version 8.1 or higher is recommended. [Install PHP](https://documentation.ubuntu.com/server/how-to/web-services/install-php/)
+- **PHP XML Extension**: This is a mandatory PHP extension.
+- **Composer**: The PHP dependency manager. [Install Composer](https://getcomposer.org/download/)
+
+#### Installing the PHP XML Extension (Important!)
+
+On Debian/Ubuntu-based systems, you can install the required XML extension by running:
+
+```bash
+# First, update your package list
+sudo apt-get update
+
+# Install the XML extension for your PHP version (e.g., 8.1)
+sudo apt-get install php8.1-xml
+```
+
+### 2. Install PHP Dependencies
+
+This command will read the `composer.json` file and download the required libraries into a `vendor/` folder.
+
+Navigate to the project's root directory in your terminal and run:
+
+```bash
+composer install
+```
+
+### 3. Run the Local PHP Server
+
+Use PHP's built-in web server for easy local development. From the project's root directory, run:
+
+```bash
+php -S localhost:8000
+```
+
+This will make the project available in your browser at **[http://localhost:8000](http://localhost:8000)**. The server will remain active until you stop it by pressing `Ctrl + C` in the terminal.
+
+### Troubleshooting
+
+- **Error: `Class "..." not found`**: This usually means dependencies are not installed or the `vendor/autoload.php` file is not being included in `index.php`. Make sure you have run `composer install`.
+
+- **Error: `ext-simplexml is missing`**: You need to install the PHP XML extension. See the "Prerequisites" section above.
+
+- **Composer version conflicts**: If you get errors about incompatible package versions during `composer install`, try removing the old lock file and vendor directory before running the command again. This forces Composer to resolve dependencies from scratch.
+  ```bash
+  rm composer.lock
+  rm -rf vendor/
+  composer install
+  ```

@@ -5,7 +5,7 @@
     
     ],
     "require": {
-        "seboettg/citeproc-php": "^2.6.0",
+        "seboettg/citeproc-php": "^2.4",
         "citation-style-language/locales":"@dev",
         "citation-style-language/styles":"@dev"
     },
