@@ -272,6 +272,46 @@
 
     <section id="team" class="team-area pt-120">
         <div class="container">
+
+            <!-- ======================= Director Part ======================= -->
+            <div class="row justify-content-center">
+                <div class="col-lg-10">
+                    <div class="section-title text-center pb-30">
+                        <div class="line m-auto"></div>
+                        <h3 class="title"><span>Meet Our</span> Lab Director</h3>
+                    </div> <!-- section title -->
+                </div>
+            </div> <!-- row -->
+
+            <div class="row justify-content-center align-items-center">
+                <div class="col-lg-4 col-md-6">
+                    <div class="single-team text-center mt-30 wow fadeIn" data-wow-duration="1s" data-wow-delay="0.2s">
+                        <div class="team-image">
+                            <img src="assets/images/team/maycon.png" alt="Maycon Leone Peixoto, Lab Director">
+                            <div class="social">
+                                <ul>
+                                    <li><a target="_blank" href="http://lattes.cnpq.br/5003713680310544" title="Lattes"><i class="ai ai-lattes"></i></a></li>
+                                    <li><a target="_blank" href="https://orcid.org/0000-0002-4851-5228" title="ORCID"><i class="ai ai-orcid"></i></a></li>
+                                    <li><a target="_blank" href="http://www.linkedin.com/in/maycon-peixoto" title="LinkedIn"><i class="lni-linkedin-original"></i></a></li>
+                                    <li><a href="mailto:maycon.leone@ufba.br" title="Contact Email"><i class="lni-envelope"></i></a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-8">
+                    <!-- Director content -->
+                    <div class="team-content-director mt-30">
+                        <h4 class="holder-name">Maycon Leone Peixoto, PhD</h4>
+                        <p class="text"><strong>Principal Investigator / Lab Coordinator</strong></p>
+
+                        <blockquote class="director-quote mt-3 text-justify">
+                            "Maycon Peixoto received the master’s and Ph.D. degrees in computer science from the University of São Paulo (USP), Brazil, in 2008 and 2012, respectively. He conducted postdoctoral research at the University of Campinas (UNICAMP), Brazil, in 2020. He was a visiting professor at the University of Toronto in Canada during the 2023-2024 period. He is currently a Professor at the Department of Computer Science, Federal University of Bahia (UFBA). His main research interests include urban computing, smart grids, vehicular ad-hoc networks, performance evaluation, cloud, edge, and fog computing."
+                        </blockquote>
+                    </div>
+                </div>
+            </div> <!-- row -->
+
             <div class="row justify-content-center">
                 <div class="col-lg-5">
                     <div class="section-title text-center pb-30">
@@ -281,26 +321,6 @@
                 </div>
             </div> <!-- row -->
             <div class="row justify-content-center">
-                <div class="col-lg-3 col-md-7 col-sm-8col-lg-3 col-md-7 col-sm-8">
-                    <div class="single-team text-center mt-30 wow fadeIn" data-wow-duration="1s" data-wow-delay="0.8s">
-                        <div class="team-image">
-                            <img src="assets/images/team/maycon.png" alt="Team">
-                            <div class="social">
-                                <ul>
-                                    <li><a target="_blank" href="http://lattes.cnpq.br/5003713680310544"><i class="ai ai-lattes"></i></a>
-                                    </li>
-                                    <li><a target="_blank" href="https://orcid.org/0000-0002-4851-5228"><i class="ai ai-orcid"></i></a></li>
-                                    <li><a target="_blank" href="http://www.linkedin.com/in/maycon-peixoto"><i
-                                            class="lni-linkedin-original"></i></a></li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="team-content">
-                            <h5 class="holder-name"><a href="#">Maycon Leone Peixoto</a></h5>
-                            <p class="text">PhD / Coordinator</p>
-                        </div>
-                    </div> <!-- single team -->
-                </div>
 
                 <div class="col-lg-3 col-md-7 col-sm-8">
                     <div class="single-team text-center mt-30 wow fadeIn" data-wow-duration="1s" data-wow-delay="0.2s">
