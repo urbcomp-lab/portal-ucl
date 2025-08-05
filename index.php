@@ -675,6 +675,26 @@
                         </div>
                     </div> <!-- single team -->
                 </div>
+
+                <div class="col-lg-3 col-md-7 col-sm-8">
+                    <div class="single-team text-center mt-30 wow fadeIn" data-wow-duration="1s" data-wow-delay="0.5s">
+                        <div class="team-image">
+                            <img src="assets/images/team/gustavo_falcao.jpeg" alt="Team">
+                            <div class="social">
+                                <ul>
+                                    <li><a target="_blank" href="http://lattes.cnpq.br/5627290180273165"><i class="ai ai-lattes"></i></a>
+                                    </li>
+                                    <li><a target="_blank" href=""><i
+                                            class="lni-linkedin-original btn disabled"></i></a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="team-content">
+                            <h5 class="holder-name"><a href="#">Gustavo Falcão</a></h5>
+                            <p class="text">PhD Student</p>
+                        </div>
+                    </div> <!-- single team -->
+                </div>
             </div> <!-- row -->
         </div> <!-- container -->
     </section>
