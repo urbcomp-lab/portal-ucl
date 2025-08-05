@@ -253,11 +253,11 @@
                         <div class="services-icon">
                             <img class="shape" src="assets/images/services-shape.svg" alt="shape">
                             <img class="shape-1" src="assets/images/services-shape-2.svg" alt="shape">
-                            <i class="fa fa-tint"></i>
+                            <i class="fa fa-atom"></i>
                         </div>
                         <div class="services-content mt-30">
-                            <h4 class="services-title"><a href="#">Smart Water</a></h4>
-                            <p class="text">Intelligent management of water distribution network, leak detection and sustainable use.</p>
+                            <h4 class="services-title"><a href="#">Quantum Computing</a></h4>
+                            <p class="text">Harnessing quantum mechanics to solve problems beyond the reach of classical computers.</p>
                             <!--                            <a class="more" href="#">Learn More <i class="lni-chevron-right"></i></a>-->
                         </div>
                     </div> <!-- single services -->
