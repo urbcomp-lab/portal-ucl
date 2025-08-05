@@ -191,8 +191,8 @@
                 </div>
             </div> <!-- row -->
             <div class="row justify-content-center">
-                <div class="col-lg-12 col-md-7 col-sm-8">
-                    <div class="single-services text-center mt-30 wow fadeIn" data-wow-duration="1s" data-wow-delay="0.5s">
+                <div class="col-lg-12 col-md-7 col-sm-8 mb-5">
+                    <div class="single-services py-3 services-featured text-center mt-30 wow fadeIn" data-wow-duration="1s" data-wow-delay="0.5s">
                         <div class="services-icon">
                             <img class="shape" src="assets/images/services-shape.svg" alt="shape">
                             <img class="shape-1" src="assets/images/services-shape-1.svg" alt="shape">
