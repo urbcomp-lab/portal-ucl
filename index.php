@@ -695,6 +695,27 @@
                         </div>
                     </div> <!-- single team -->
                 </div>
+
+                <div class="col-lg-3 col-md-7 col-sm-8">
+                    <div class="single-team text-center mt-30 wow fadeIn" data-wow-duration="1s" data-wow-delay="0.5s">
+                        <div class="team-image">
+                            <img src="assets/images/team/gabriel_borges.png" alt="Team">
+                            <div class="social">
+                                <ul>
+                                    <li><a target="_blank" href="http://lattes.cnpq.br/8714280171323012"><i class="ai ai-lattes"></i></a>
+                                    </li>
+                                    <li><a target="_blank" href="https://www.linkedin.com/in/gabriel-calheiros-2132bb61"><i
+                                            class="lni-linkedin-original"></i></a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="team-content">
+                            <h5 class="holder-name"><a href="#">Gabriel Borges</a></h5>
+                            <p class="text">Master's Degree Candidate</p>
+                        </div>
+                    </div> <!-- single team -->
+                </div>
+
             </div> <!-- row -->
         </div> <!-- container -->
     </section>
