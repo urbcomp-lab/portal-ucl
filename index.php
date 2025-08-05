@@ -579,7 +579,7 @@
                 <div class="col-lg-3 col-md-7 col-sm-8">
                     <div class="single-team text-center mt-30 wow fadeIn" data-wow-duration="1s" data-wow-delay="0.5s">
                         <div class="team-image">
-                            <img src="assets/images/team/lucas.png" alt="Team">
+                            <img src="assets/images/team/lucas_mascarenhas.jpeg" alt="Team">
                             <div class="social">
                                 <ul>
                                     <li><a target="_blank" href="http://lattes.cnpq.br/9440856373742866"><i class="ai ai-lattes"></i></a>
