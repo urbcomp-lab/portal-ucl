@@ -181,9 +181,9 @@
     <!--====== AREAS DE INTERESSE PART START ======-->
 
     <section id="areas_interesse" class="services-area pt-120">
-        <div class="container">
+        <div class="container-fluid">
             <div class="row justify-content-center">
-                <div class="col-lg-10">
+                <div class="col-lg-12">
                     <div class="section-title text-center pb-40">
                         <div class="line m-auto"></div>
                         <h3 class="title">Our group <span>Research Interests</span></h3>
@@ -199,14 +199,14 @@
                             <i><img src="assets/images/edge.svg" width="45px" style="filter: invert(100%) sepia(100%) saturate(100%);"></i>
                         </div>
                         <div class="services-content mt-30">
-                            <h4 class="services-title"><a href="#">Edge Computing</a></h4>
+                            <h4 class="services-title"><a href="#">Edge Cloud Continuous</a></h4>
                             <p class="text">Computation closer to the sources of data.</p>
                             <!--                            <a class="more" href="#">Learn More <i class="lni-chevron-right"></i></a>-->
                         </div>
                     </div> <!-- single services -->
                 </div>
 
-                <div class="col-lg-3 col-md-7 col-sm-8">
+                <div class="col-lg-2 col-md-7 col-sm-8">
                     <div class="single-services text-center mt-30 wow fadeIn" data-wow-duration="1s" data-wow-delay="0.5s">
                         <div class="services-icon">
                             <img class="shape" src="assets/images/services-shape.svg" alt="shape">
@@ -220,7 +220,7 @@
                         </div>
                     </div> <!-- single services -->
                 </div>
-                <div class="col-lg-3 col-md-7 col-sm-8">
+                <div class="col-lg-2 col-md-7 col-sm-8">
                     <div class="single-services text-center mt-30 wow fadeIn" data-wow-duration="1s" data-wow-delay="0.2s">
                         <div class="services-icon">
                             <img class="shape" src="assets/images/services-shape.svg" alt="shape">
@@ -234,7 +234,7 @@
                         </div>
                     </div> <!-- single services -->
                 </div>
-                <div class="col-lg-3 col-md-7 col-sm-8">
+                <div class="col-lg-2 col-md-7 col-sm-8">
                     <div class="single-services text-center mt-30 wow fadeIn" data-wow-duration="1s" data-wow-delay="0.8s">
                         <div class="services-icon">
                             <img class="shape" src="assets/images/services-shape.svg" alt="shape">
@@ -248,7 +248,7 @@
                         </div>
                     </div> <!-- single services -->
                 </div>
-                <div class="col-lg-3 col-md-7 col-sm-8">
+                <div class="col-lg-2 col-md-7 col-sm-8">
                     <div class="single-services text-center mt-30 wow fadeIn" data-wow-duration="1s" data-wow-delay="0.8s">
                         <div class="services-icon">
                             <img class="shape" src="assets/images/services-shape.svg" alt="shape">
@@ -258,6 +258,20 @@
                         <div class="services-content mt-30">
                             <h4 class="services-title"><a href="#">Quantum Computing</a></h4>
                             <p class="text">Harnessing quantum mechanics to solve problems beyond the reach of classical computers.</p>
+                            <!--                            <a class="more" href="#">Learn More <i class="lni-chevron-right"></i></a>-->
+                        </div>
+                    </div> <!-- single services -->
+                </div>
+                <div class="col-lg-2 col-md-7 col-sm-8">
+                    <div class="single-services text-center mt-30 wow fadeIn" data-wow-duration="1s" data-wow-delay="0.8s">
+                        <div class="services-icon">
+                            <img class="shape" src="assets/images/services-shape.svg" alt="shape">
+                            <img class="shape-1" src="assets/images/services-shape-2.svg" alt="shape">
+                            <i class="fa fa-atom"></i>
+                        </div>
+                        <div class="services-content mt-30">
+                            <h4 class="services-title"><a href="#">Federated learning</a></h4>
+                            <p class="text">Collaborative model training across multiple decentralized devices or servers.</p>
                             <!--                            <a class="more" href="#">Learn More <i class="lni-chevron-right"></i></a>-->
                         </div>
                     </div> <!-- single services -->
