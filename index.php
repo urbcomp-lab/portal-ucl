@@ -326,9 +326,9 @@
                 </div>
             </div> <!-- row -->
 
-            <div class="row justify-content-center">
+            <div class="row justify-content-center mt-5">
                 <div class="col-lg-5">
-                    <div class="section-title text-center pb-30">
+                    <div class="section-title text-center">
                         <div class="line m-auto"></div>
                         <h3 class="title"><span>Our</span> Team</h3>
                     </div> <!-- section title -->
