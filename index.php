@@ -301,7 +301,7 @@
                 <div class="col-lg-4 col-md-6">
                     <div class="single-team text-center mt-30 wow fadeIn" data-wow-duration="1s" data-wow-delay="0.2s">
                         <div class="team-image">
-                            <img src="assets/images/team/maycon.png" alt="Maycon Leone Peixoto, Lab Director">
+                            <img src="assets/images/team/maycon_leone.jpeg" alt="Maycon Leone Peixoto, Lab Director">
                             <div class="social">
                                 <ul>
                                     <li><a target="_blank" href="http://lattes.cnpq.br/5003713680310544" title="Lattes"><i class="ai ai-lattes"></i></a></li>
