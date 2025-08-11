@@ -13,7 +13,7 @@
     CSS INDEX
     ===================
 
-    01.COMMON 
+    01.COMMON
     02.HEADER
     03.BRAND
     04.SERVICES
@@ -27,7 +27,7 @@
 
 -----------------------------------------------------------------------------------*/
 /*===========================
-     01.COMMON css 
+     01.COMMON css
 ===========================*/
 @import url("https://fonts.googleapis.com/css?family=Poppins:400,700|Lato:300,400,700&display=swap");
 
@@ -596,7 +596,7 @@ p {
 }
 
 /*===========================
-      02.HEADER css 
+      02.HEADER css
 ===========================*/
 /*===== NAVBAR =====*/
 .navbar-area {
@@ -1062,7 +1062,7 @@ p {
 }
 
 /*===========================
-      03.BRAND css 
+      03.BRAND css
 ===========================*/
 
 @media (max-width: 767px) {
@@ -1115,7 +1115,7 @@ p {
 }
 
 /*===========================
-      04.SERVICES css 
+      04.SERVICES css
 ===========================*/
 .single-services {
     background-color: #fff;
@@ -1245,7 +1245,7 @@ p {
 }
 
 /*===========================
-      05.ABOUT css 
+      05.ABOUT css
 ===========================*/
 .about-area {
     position: relative;
@@ -1314,7 +1314,7 @@ p {
 }
 
 /*===========================
-    06.VIDEO COUNTER css 
+    06.VIDEO COUNTER css
 ===========================*/
 .video-content {
     position: relative;
@@ -1509,7 +1509,7 @@ p {
 }
 
 /*===========================
-       07.TEAM css 
+       07.TEAM css
 ===========================*/
 .single-team {
     -webkit-box-shadow: 0px 0px 30px 0px rgba(167, 167, 167, 0.16);
@@ -1595,7 +1595,7 @@ p {
 }
 
 /*===========================
-     08.TESTIMONIAL css 
+     08.TESTIMONIAL css
 ===========================*/
 .single-testimonial {
     background-color: #fff;
@@ -1714,7 +1714,7 @@ p {
 }
 
 /*===========================
-       09.BLOG  css 
+       09.BLOG  css
 ===========================*/
 .single-blog .blog-image img {
     border-radius: 10px;
@@ -1766,7 +1766,7 @@ p {
 }
 
 /*===========================
-       10.SUBSCRIBE  css 
+       10.SUBSCRIBE  css
 ===========================*/
 .subscribe-area {
     padding: 40px 50px 90px;
@@ -1882,7 +1882,7 @@ p {
 }
 
 /*===========================
-       11.FOOTER  css 
+       11.FOOTER  css
 ===========================*/
 .footer-area {
     background-position: top center;
@@ -1905,7 +1905,7 @@ p {
 
 @media only screen and (min-width: 1921px) {
     .footer-area::before {
-        height: 1120px;
+        height: 850px;
     }
 }
 
@@ -2075,4 +2075,24 @@ video#bgvideo {
     /*transform: translateX(-50%) translateY(-50%);*/
     background: url(../images/videos/cover.jpg) no-repeat;
     /*background-size: cover;*/
+}
+
+.single-services {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.single-services .services-content {
+    flex-grow: 1;
+}
+
+.services-featured {
+    background-image: url('../images/edge-shape.jpg');
+    background-size: cover;
+    opacity: 0.8;
+}
+
+.footer-area {
+    margin-top: 20em;
 }
