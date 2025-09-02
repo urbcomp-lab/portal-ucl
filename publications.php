@@ -29,7 +29,7 @@ function printYearSection($year, $items, $citeProc) {
 
 try {
     $dataString = file_get_contents("publications.json");
-    $style = StyleSheet::loadStyleSheet("harvard-cite-them-right.csl");
+    $style = StyleSheet::loadStyleSheet("harvard-cite-them-right");
     $citeProc = new CiteProc($style, "en-US");
     $data = json_decode($dataString);
     $grouped = groupByYear($data);
