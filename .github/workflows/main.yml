@@ -13,9 +13,9 @@ jobs:
     - uses: "shivammathur/setup-php@v2"
       with:
         php-version: "8.1"
-        extensions: curl, fileinfo, intl, mbstring, openssl
-    - uses: "ramsey/composer-install@v2"            
-    
+        extensions: curl, fileinfo, intl, mbstring, openssl, simplexml
+    - uses: "ramsey/composer-install@v2"
+
     - name: 📚 Prepare bib file
       run: |
         npm install

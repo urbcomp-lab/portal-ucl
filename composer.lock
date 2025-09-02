@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "e2bcb49f174f488acc91cc261c9c47fa",
+    "content-hash": "301a764c2c25ab36cfecf6a93d8f957f",
     "packages": [
         {
             "name": "citation-style-language/locales",
@@ -52,16 +52,16 @@
         },
         {
             "name": "citation-style-language/styles",
-            "version": "v0.0.325",
+            "version": "v0.1.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/citation-style-language/styles.git",
-                "reference": "5bea241e5a2acacc29b947e21539be9cbe79c8bd"
+                "reference": "b95313e1e17d6c6aa82d72acc852d602328ef762"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/citation-style-language/styles/zipball/5bea241e5a2acacc29b947e21539be9cbe79c8bd",
-                "reference": "5bea241e5a2acacc29b947e21539be9cbe79c8bd",
+                "url": "https://api.github.com/repos/citation-style-language/styles/zipball/b95313e1e17d6c6aa82d72acc852d602328ef762",
+                "reference": "b95313e1e17d6c6aa82d72acc852d602328ef762",
                 "shasum": ""
             },
             "type": "library",
@@ -79,15 +79,15 @@
             "homepage": "http://citationstyles.org/",
             "support": {
                 "issues": "https://github.com/citation-style-language/styles/issues",
-                "source": "https://github.com/citation-style-language/styles/tree/v0.0.325"
+                "source": "https://github.com/citation-style-language/styles/tree/v0.1.4"
             },
             "funding": [
                 {
-                    "url": "https://github.com/rmzelle",
+                    "url": "https://github.com/adam3smith",
                     "type": "github"
                 }
             ],
-            "time": "2023-11-10T16:42:03+00:00"
+            "time": "2025-08-22T19:09:11+00:00"
         },
         {
             "name": "myclabs/php-enum",
@@ -274,99 +274,17 @@
                 "source": "https://github.com/seboettg/Collection/tree/v3.1.0"
             },
             "time": "2022-07-09T19:47:27+00:00"
-        },
-        {
-            "name": "symfony/polyfill-mbstring",
-            "version": "v1.32.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/symfony/polyfill-mbstring.git",
-                "reference": "6d857f4d76bd4b343eac26d6b539585d2bc56493"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/symfony/polyfill-mbstring/zipball/6d857f4d76bd4b343eac26d6b539585d2bc56493",
-                "reference": "6d857f4d76bd4b343eac26d6b539585d2bc56493",
-                "shasum": ""
-            },
-            "require": {
-                "ext-iconv": "*",
-                "php": ">=7.2"
-            },
-            "provide": {
-                "ext-mbstring": "*"
-            },
-            "suggest": {
-                "ext-mbstring": "For best performance"
-            },
-            "type": "library",
-            "extra": {
-                "thanks": {
-                    "url": "https://github.com/symfony/polyfill",
-                    "name": "symfony/polyfill"
-                }
-            },
-            "autoload": {
-                "files": [
-                    "bootstrap.php"
-                ],
-                "psr-4": {
-                    "Symfony\\Polyfill\\Mbstring\\": ""
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Nicolas Grekas",
-                    "email": "p@tchwork.com"
-                },
-                {
-                    "name": "Symfony Community",
-                    "homepage": "https://symfony.com/contributors"
-                }
-            ],
-            "description": "Symfony polyfill for the Mbstring extension",
-            "homepage": "https://symfony.com",
-            "keywords": [
-                "compatibility",
-                "mbstring",
-                "polyfill",
-                "portable",
-                "shim"
-            ],
-            "support": {
-                "source": "https://github.com/symfony/polyfill-mbstring/tree/v1.32.0"
-            },
-            "funding": [
-                {
-                    "url": "https://symfony.com/sponsor",
-                    "type": "custom"
-                },
-                {
-                    "url": "https://github.com/fabpot",
-                    "type": "github"
-                },
-                {
-                    "url": "https://tidelift.com/funding/github/packagist/symfony/symfony",
-                    "type": "tidelift"
-                }
-            ],
-            "time": "2024-12-23T08:48:59+00:00"
         }
     ],
     "packages-dev": [],
     "aliases": [],
     "minimum-stability": "stable",
     "stability-flags": {
-        "citation-style-language/locales": 20,
-        "citation-style-language/styles": 20
+        "citation-style-language/locales": 20
     },
     "prefer-stable": false,
     "prefer-lowest": false,
-    "platform": {},
-    "platform-dev": {},
+    "platform": [],
+    "platform-dev": [],
     "plugin-api-version": "2.6.0"
 }
