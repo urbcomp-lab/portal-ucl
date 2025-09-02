@@ -29,21 +29,21 @@ function printYearSection($year, $items, $citeProc) {
 
 try {
     $dataString = file_get_contents("publications.json");
-    $style = StyleSheet::loadStyleSheet("harvard-cite-them-right");
-    $citeProc = new CiteProc($style, "en-US");    
-    $data = json_decode($dataString);        
+    $style = StyleSheet::loadStyleSheet("harvard-cite-them-right.csl");
+    $citeProc = new CiteProc($style, "en-US");
+    $data = json_decode($dataString);
     $grouped = groupByYear($data);
     krsort($grouped);
 
     foreach ($grouped as $year => $papers) {
-        printYearSection($year, $papers, $citeProc);       
+        printYearSection($year, $papers, $citeProc);
     }
 
 
     // $bibliography = $citeProc->render($data, "bibliography");
 
 } catch (Exception $e) {
-    echo "Error loading papers\n";
+    echo "Error loading papers: " . $e->getMessage() . "\n";
+    echo "In file: " . $e->getFile() . " on line " . $e->getLine() . "\n";
 }
 ?>
-
