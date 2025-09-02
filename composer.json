@@ -3,6 +3,7 @@
     "type": "project",
     "require": {
         "seboettg/citeproc-php": "^2.4",
+        "seboettg/collection": "^3.0 <4.0.0",
         "citation-style-language/locales": "@dev",
         "citation-style-language/styles": "^0.1.4"
     },
