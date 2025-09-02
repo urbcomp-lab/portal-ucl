@@ -21,6 +21,9 @@ jobs:
     - name: 🔄 Rebuild autoloader cache
       run: composer dump-autoload --optimize
 
+    - name: 🧹 Clear PHP Opcache
+      run: php -r "if (function_exists('opcache_reset')) { opcache_reset(); echo 'Opcache cleared successfully.'; }"
+
     - name: 🧐 Verify installed packages
       run: |
         echo "--- Verificando a versão de seboettg/collection ---"
