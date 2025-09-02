@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "66269541bb88210698d85dc9efb0e229",
+    "content-hash": "32c6016aa8ae7563fc007548c69f2951",
     "packages": [
         {
             "name": "citation-style-language/locales",
@@ -215,33 +215,29 @@
         },
         {
             "name": "seboettg/collection",
-            "version": "v4.0.0",
+            "version": "v3.1.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/seboettg/Collection.git",
-                "reference": "ca96a44ccfd66a68c8872e4bda603383600d1b94"
+                "reference": "6f753aef75923965173dcb11696e5dece0533f45"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/seboettg/Collection/zipball/ca96a44ccfd66a68c8872e4bda603383600d1b94",
-                "reference": "ca96a44ccfd66a68c8872e4bda603383600d1b94",
+                "url": "https://api.github.com/repos/seboettg/Collection/zipball/6f753aef75923965173dcb11696e5dece0533f45",
+                "reference": "6f753aef75923965173dcb11696e5dece0533f45",
                 "shasum": ""
             },
             "require": {
-                "php": ">=7.4"
+                "php": ">=7.3"
             },
             "require-dev": {
-                "ext-json": "*",
                 "php-coveralls/php-coveralls": "^1",
                 "phpunit/phpunit": "8.5.*"
             },
             "type": "library",
             "autoload": {
                 "files": [
-                    "src/Assert/Functions.php",
-                    "src/Lists/Functions.php",
-                    "src/Map/Functions.php",
-                    "src/Common/Functions.php"
+                    "src/ArrayList/Functions.php"
                 ],
                 "psr-4": {
                     "Seboettg\\Collection\\": "src/"
@@ -276,9 +272,9 @@
             ],
             "support": {
                 "issues": "https://github.com/seboettg/Collection/issues",
-                "source": "https://github.com/seboettg/Collection/tree/v4.0.0"
+                "source": "https://github.com/seboettg/Collection/tree/v3.1.0"
             },
-            "time": "2023-12-07T21:44:11+00:00"
+            "time": "2022-07-09T19:47:27+00:00"
         }
     ],
     "packages-dev": [],
