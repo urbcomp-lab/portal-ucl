@@ -1,13 +1,15 @@
 {
     "name": "ucl/portal",
     "type": "project",
-    "repositories": [
-    
-    ],
     "require": {
         "seboettg/citeproc-php": "^2.4",
-        "citation-style-language/locales":"@dev",
-        "citation-style-language/styles":"^0.1.4"
+        "citation-style-language/locales": "@dev",
+        "citation-style-language/styles": "^0.1.4"
+    },
+    "config": {
+        "platform": {
+            "php": "8.1"
+        }
     },
     "autoload": {
         "psr-4": {
