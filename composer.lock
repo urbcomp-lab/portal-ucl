@@ -8,18 +8,19 @@
     "packages": [
         {
             "name": "citation-style-language/locales",
-            "version": "v0.0.11",
+            "version": "dev-master",
             "source": {
                 "type": "git",
                 "url": "https://github.com/citation-style-language/locales.git",
-                "reference": "fe37f30df9d11e43f5f727c9b46c067bdc543b55"
+                "reference": "e29c453478494be53869f0f8e9e4c42dad42712d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/citation-style-language/locales/zipball/fe37f30df9d11e43f5f727c9b46c067bdc543b55",
-                "reference": "fe37f30df9d11e43f5f727c9b46c067bdc543b55",
+                "url": "https://api.github.com/repos/citation-style-language/locales/zipball/e29c453478494be53869f0f8e9e4c42dad42712d",
+                "reference": "e29c453478494be53869f0f8e9e4c42dad42712d",
                 "shasum": ""
             },
+            "default-branch": true,
             "type": "library",
             "extra": {
                 "branch-alias": {
@@ -40,15 +41,15 @@
             "homepage": "http://citationstyles.org/",
             "support": {
                 "issues": "https://github.com/citation-style-language/locales/issues",
-                "source": "https://github.com/citation-style-language/locales/tree/v0.0.11"
+                "source": "https://github.com/citation-style-language/locales/tree/v0.0.49"
             },
             "funding": [
                 {
-                    "url": "https://github.com/rmzelle",
+                    "url": "https://github.com/adam3smith",
                     "type": "github"
                 }
             ],
-            "time": "2023-09-21T16:37:26+00:00"
+            "time": "2025-08-20T11:02:20+00:00"
         },
         {
             "name": "citation-style-language/styles",
@@ -91,16 +92,16 @@
         },
         {
             "name": "myclabs/php-enum",
-            "version": "1.8.4",
+            "version": "1.8.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/myclabs/php-enum.git",
-                "reference": "a867478eae49c9f59ece437ae7f9506bfaa27483"
+                "reference": "e7be26966b7398204a234f8673fdad5ac6277802"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/myclabs/php-enum/zipball/a867478eae49c9f59ece437ae7f9506bfaa27483",
-                "reference": "a867478eae49c9f59ece437ae7f9506bfaa27483",
+                "url": "https://api.github.com/repos/myclabs/php-enum/zipball/e7be26966b7398204a234f8673fdad5ac6277802",
+                "reference": "e7be26966b7398204a234f8673fdad5ac6277802",
                 "shasum": ""
             },
             "require": {
@@ -110,7 +111,7 @@
             "require-dev": {
                 "phpunit/phpunit": "^9.5",
                 "squizlabs/php_codesniffer": "1.*",
-                "vimeo/psalm": "^4.6.2"
+                "vimeo/psalm": "^4.6.2 || ^5.2"
             },
             "type": "library",
             "autoload": {
@@ -132,13 +133,13 @@
                 }
             ],
             "description": "PHP Enum implementation",
-            "homepage": "http://github.com/myclabs/php-enum",
+            "homepage": "https://github.com/myclabs/php-enum",
             "keywords": [
                 "enum"
             ],
             "support": {
                 "issues": "https://github.com/myclabs/php-enum/issues",
-                "source": "https://github.com/myclabs/php-enum/tree/1.8.4"
+                "source": "https://github.com/myclabs/php-enum/tree/1.8.5"
             },
             "funding": [
                 {
@@ -150,29 +151,30 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2022-08-04T09:53:51+00:00"
+            "time": "2025-01-14T11:49:03+00:00"
         },
         {
             "name": "seboettg/citeproc-php",
-            "version": "v2.4.1",
+            "version": "v2.5.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/seboettg/citeproc-php.git",
-                "reference": "b6478c9cbac7402d90e692fdb9747afefcf276a7"
+                "reference": "042535d9d1e56058f54156e3c5682f3f9a467abe"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/seboettg/citeproc-php/zipball/b6478c9cbac7402d90e692fdb9747afefcf276a7",
-                "reference": "b6478c9cbac7402d90e692fdb9747afefcf276a7",
+                "url": "https://api.github.com/repos/seboettg/citeproc-php/zipball/042535d9d1e56058f54156e3c5682f3f9a467abe",
+                "reference": "042535d9d1e56058f54156e3c5682f3f9a467abe",
                 "shasum": ""
             },
             "require": {
+                "ext-intl": "*",
                 "ext-json": "*",
                 "ext-mbstring": "*",
                 "ext-simplexml": "*",
                 "myclabs/php-enum": "^1.8",
                 "php": ">=7.3",
-                "seboettg/collection": ">=3.0"
+                "seboettg/collection": ">=v3.1.0"
             },
             "require-dev": {
                 "php-coveralls/php-coveralls": "^1",
@@ -181,7 +183,6 @@
                 "squizlabs/php_codesniffer": "^3.5"
             },
             "suggest": {
-                "ext-intl": "*",
                 "symfony/polyfill-mbstring": "^1.10"
             },
             "type": "library",
@@ -201,42 +202,46 @@
                 {
                     "name": "Sebastian Böttger",
                     "email": "seboettg@gmail.com",
-                    "homepage": "http://sebastianboettger.net",
+                    "homepage": "https://sebastianboettger.net",
                     "role": "Developer"
                 }
             ],
             "description": "Full-featured CSL processor (https://citationstyles.org)",
             "support": {
                 "issues": "https://github.com/seboettg/citeproc-php/issues",
-                "source": "https://github.com/seboettg/citeproc-php/tree/v2.4.1"
+                "source": "https://github.com/seboettg/citeproc-php/tree/v2.5.2"
             },
-            "time": "2022-05-08T11:29:02+00:00"
+            "time": "2023-02-08T21:13:17+00:00"
         },
         {
             "name": "seboettg/collection",
-            "version": "v3.1.0",
+            "version": "v4.0.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/seboettg/Collection.git",
-                "reference": "6f753aef75923965173dcb11696e5dece0533f45"
+                "reference": "ca96a44ccfd66a68c8872e4bda603383600d1b94"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/seboettg/Collection/zipball/6f753aef75923965173dcb11696e5dece0533f45",
-                "reference": "6f753aef75923965173dcb11696e5dece0533f45",
+                "url": "https://api.github.com/repos/seboettg/Collection/zipball/ca96a44ccfd66a68c8872e4bda603383600d1b94",
+                "reference": "ca96a44ccfd66a68c8872e4bda603383600d1b94",
                 "shasum": ""
             },
             "require": {
-                "php": ">=7.3"
+                "php": ">=7.4"
             },
             "require-dev": {
+                "ext-json": "*",
                 "php-coveralls/php-coveralls": "^1",
                 "phpunit/phpunit": "8.5.*"
             },
             "type": "library",
             "autoload": {
                 "files": [
-                    "src/ArrayList/Functions.php"
+                    "src/Assert/Functions.php",
+                    "src/Lists/Functions.php",
+                    "src/Map/Functions.php",
+                    "src/Common/Functions.php"
                 ],
                 "psr-4": {
                     "Seboettg\\Collection\\": "src/"
@@ -271,9 +276,9 @@
             ],
             "support": {
                 "issues": "https://github.com/seboettg/Collection/issues",
-                "source": "https://github.com/seboettg/Collection/tree/v3.1.0"
+                "source": "https://github.com/seboettg/Collection/tree/v4.0.0"
             },
-            "time": "2022-07-09T19:47:27+00:00"
+            "time": "2023-12-07T21:44:11+00:00"
         }
     ],
     "packages-dev": [],
