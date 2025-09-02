@@ -16,6 +16,9 @@ jobs:
         extensions: curl, fileinfo, intl, mbstring, openssl, simplexml
     - uses: "ramsey/composer-install@v2"
 
+    - name: 🔄 Rebuild autoloader cache
+      run: composer dump-autoload --optimize
+
     - name: 🧐 Verify installed packages
       run: |
         echo "--- Verificando a versão de seboettg/collection ---"
