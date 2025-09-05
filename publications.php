@@ -29,9 +29,17 @@ function printYearSection($year, $items, $citeProc) {
 
 try {
     $dataString = file_get_contents("publications.json");
+    if ($dataString === false)
+    {
+        throw new Exception("Error reading file publications.json!");
+    }
     $style = StyleSheet::loadStyleSheet("harvard-cite-them-right");
     $citeProc = new CiteProc($style, "en-US");
     $data = json_decode($dataString);
+    $data = json_decode($dataString);
+    if (json_last_error() !== JSON_ERROR_NONE) {
+        throw new Exception("Erro ao decodificar o JSON: " . json_last_error_msg());
+    }
     $grouped = groupByYear($data);
     krsort($grouped);
 

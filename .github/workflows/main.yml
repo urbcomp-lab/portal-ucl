@@ -43,6 +43,9 @@ jobs:
         cp curriculo.bib ../../publications.bib
         cd ../../
         node bibToJSON.js publications.bib > publications.json
+        echo "--- Executando publications.php para depuração ---"
+        php -f publications.php
+        echo "--- Fim da execução de depuração ---"
         php -f publications.php > publications.html
         sed -i '/<?php include "publications.php" ?>/{
           r publications.html
