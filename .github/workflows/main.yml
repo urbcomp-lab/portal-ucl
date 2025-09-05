@@ -43,6 +43,14 @@ jobs:
           d
         }' index.php
 
+    - name: 🕵️ List remote FTP directory for debugging
+      uses: a-l-p/ftp-ls-action@v1.2.0
+      with:
+        host: ${{ secrets.FTP_SERVER }}
+        user: ${{ secrets.FTP_USERNAME }}
+        password: ${{ secrets.FTP_PASSWORD }}
+        remote_path: "."
+
     - name: 📂 Sync files
       uses: SamKirkland/FTP-Deploy-Action@v4.3.4
       with:
@@ -50,7 +58,7 @@ jobs:
         server: ${{ secrets.FTP_SERVER }}
         username: ${{ secrets.FTP_USERNAME }}
         password: ${{ secrets.FTP_PASSWORD }}
-        server-dir: /
+        server-dir: public_html/
         exclude: |
           .git/**
           .git**
