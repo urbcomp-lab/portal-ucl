@@ -24,6 +24,16 @@ function printYearSection($year, $items, $citeProc) {
             </div> <!-- section title -->
         </div>
     </div>";
+    echo "--- [DEBUG] Verificando publicações do ano: $year ---\n";
+    foreach ($items as $item) {
+        $title = isset($item->title) ? $item->title : "TÍTULO NÃO ENCONTRADO";
+        echo "[DEBUG] Título: $title\n";
+
+        $authors_json = isset($item->author) ? json_encode($item->author) : "SEM AUTORES";
+        echo "[DEBUG] Autores: $authors_json\n";
+    }
+    echo "--- [DEBUG] Fim da verificação para o ano: $year. Tentando renderizar agora... ---\n";
+
     echo $citeProc->render($items, "bibliography");
 }
 
