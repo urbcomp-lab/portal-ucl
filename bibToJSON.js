@@ -15,17 +15,41 @@ function cleanInvalidAuthors(publications) {
     return publications.map(pub => {
         if (pub.author && Array.isArray(pub.author)) {
             pub.author = pub.author.filter(author => {
-                const hasFamilyName = author && author.family;
-                if (!hasFamilyName) {
-                    console.error(`WARNING: Removing invalid authors in '${pub.title}':`, JSON.stringify(author));
+                // Check if the author object is valid to begin with
+                if (!author) {
+                    console.error(`WARNING: Found a null/invalid author entry in publication: '${pub.title || 'Unknown Title'}'`);
+                    return false; // Remove null or undefined entries
                 }
-                return hasFamilyName;
+
+                // The definitive check:
+                // 1. The 'family' key must exist and not be an empty string.
+                // 2. The 'given' key must exist and not be an empty string.
+                const hasFamily = author.family && author.family.trim() !== '';
+                const hasGiven = author.given && author.given.trim() !== '';
+                const isValid = hasFamily && hasGiven;
+
+                // If the author is invalid, create a detailed log
+                if (!isValid) {
+                    const givenName = author.given || '[GIVEN NAME MISSING]';
+                    const familyName = author.family || '[FAMILY NAME MISSING]';
+                    const problematicName = `${givenName} ${familyName}`.trim();
+
+                    console.error(`--> ISSUE FOUND: Removing author '${problematicName}'`);
+                    console.error(`    In publication: '${pub.title || 'Unknown Title'}'`);
+                    console.error(`    Author data: ${JSON.stringify(author)}\n`);
+                }
+
+                return isValid;
             });
+
+            // If the publication is left with no authors, also warn
+            if (pub.author.length === 0) {
+                console.error(`--> WARNING: The publication '${pub.title || 'Unknown Title'}' has no valid authors left after cleanup.\n`);
+            }
         }
         return pub;
     });
 }
-
 
 async function runConverter(filename){
     const bib = await readFile(filename, 'utf8');
