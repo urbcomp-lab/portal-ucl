@@ -1,83 +1,73 @@
-import { parse } from 'astrocite-bibtex';
 import { readFile } from 'fs/promises';
+import { Parser } from 'xml2js';
 
-function bibToJSON(bib) {
-    const parsed = parse(bib);
-    return parsed;
+function parseAuthorName(citationName) {
+    if (!citationName || !citationName.includes(',')) {
+        return null;
+    }
+    const parts = citationName.split(',');
+    const family = parts[0].trim();
+    const given = parts[1].trim();
+
+    if (!family || !given) {
+        return null;
+    }
+
+    return { family, given };
 }
 
-async function readFileFromDisk(filename) {
-    var file = readFile(filename);
-    return file;
-}
+async function runConverter(filename) {
+    const xmlData = await readFile(filename, 'utf8');
+    const parser = new Parser({ explicitArray: false, mergeAttrs: true });
+    const result = await parser.parseStringPromise(xmlData);
 
-function cleanInvalidAuthors(publications) {
-    return publications.map(pub => {
-        if (pub.author && Array.isArray(pub.author)) {
-            pub.author = pub.author.filter(author => {
-                // Check if the author object is valid to begin with
-                if (!author) {
-                    console.error(`WARNING: Found a null/invalid author entry in publication: '${pub.title || 'Unknown Title'}'`);
-                    return false; // Remove null or undefined entries
-                }
+    const publications = [];
 
-                // The definitive check:
-                // 1. The 'family' key must exist and not be an empty string.
-                // 2. The 'given' key must exist and not be an empty string.
-                const hasFamily = author.family && author.family.trim() !== '';
-                const hasGiven = author.given && author.given.trim() !== '';
-                const isValid = hasFamily && hasGiven;
+    const papersInProceedings = result['CURRICULO-VITAE']['PRODUCAO-BIBLIOGRAFICA']['TRABALHOS-EM-EVENTOS']['TRABALHO-EM-EVENTOS'] || [];
+    const journalArticles = result['CURRICULO-VITAE']['PRODUCAO-BIBLIOGRAFICA']['ARTIGOS-PUBLICADOS']['ARTIGO-PUBLICADO'] || [];
 
-                // If the author is invalid, create a detailed log
-                if (!isValid) {
-                    const givenName = author.given || '[GIVEN NAME MISSING]';
-                    const familyName = author.family || '[FAMILY NAME MISSING]';
-                    const problematicName = `${givenName} ${familyName}`.trim();
+    (Array.isArray(papersInProceedings) ? papersInProceedings : [papersInProceedings]).forEach(item => {
+        const details = item['DADOS-BASICOS-DO-TRABALHO'];
+        const authors = (Array.isArray(item['AUTORES']) ? item['AUTORES'] : [item['AUTORES']]);
 
-                    console.error(`--> ISSUE FOUND: Removing author '${problematicName}'`);
-                    console.error(`    In publication: '${pub.title || 'Unknown Title'}'`);
-                    console.error(`    Author data: ${JSON.stringify(author)}\n`);
-                }
-
-                return isValid;
-            });
-
-            // If the publication is left with no authors, also warn
-            if (pub.author.length === 0) {
-                console.error(`--> WARNING: The publication '${pub.title || 'Unknown Title'}' has no valid authors left after cleanup.\n`);
-            }
-        }
-        return pub;
-    });
-}
-
-async function runConverter(filename){
-    const bib = await readFile(filename, 'utf8');
-    const json = bibToJSON(bib);
-    const fixed = fixDatePartsLattes(json);
-    const cleanedAuthors = cleanInvalidAuthors(fixed);
-    return cleanedAuthors;
-}
-
-function fixDatePartsLattes(publications){
-    // enter in json and fix the date parts
-    // issued/date-parts
-
-    return publications.map((publication) => {
-        const dateParts = publication.issued['date-parts'][0];
-        const year = dateParts[0] || "1900";
-        const month = dateParts[1] || "1";
-        const day = dateParts[2] || "1";
-        publication.issued = {
-            'date-parts': [[year, month, day]]
-        }
-        return publication;
+        const cslItem = {
+            title: details['TITULO-DO-TRABALHO'],
+            issued: {
+                'date-parts': [[details['ANO-DO-TRABALHO'] || '1900']]
+            },
+            author: authors
+                .map(author => parseAuthorName(author['NOME-PARA-CITACAO']))
+                .filter(author => author !== null)
+        };
+        publications.push(cslItem);
     });
 
+    (Array.isArray(journalArticles) ? journalArticles : [journalArticles]).forEach(item => {
+        const details = item['DADOS-BASICOS-DO-ARTIGO'];
+        const authors = (Array.isArray(item['AUTORES']) ? item['AUTORES'] : [item['AUTORES']]);
+
+        const cslItem = {
+            title: details['TITULO-DO-ARTIGO'],
+            issued: {
+                'date-parts': [[details['ANO-DO-ARTIGO'] || '1900']]
+            },
+            author: authors
+                .map(author => parseAuthorName(author['NOME-PARA-CITACAO']))
+                .filter(author => author !== null)
+        };
+        publications.push(cslItem);
+    });
+
+    const finalPublications = publications.filter(pub => pub.author && pub.author.length > 0);
+
+    return finalPublications;
 }
 
 const args = process.argv.slice(2);
 const filename = args[0];
 runConverter(filename).then((json) => {
     console.log(JSON.stringify(json, null, 2));
+}).catch(err => {
+    console.error("An error occurred during XML to JSON conversion:", err);
+    process.exit(1);
 });
