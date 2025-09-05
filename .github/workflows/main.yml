@@ -33,23 +33,24 @@ jobs:
     - name: 📚 Prepare bib file
       run: |
         npm install
-        sudo apt-get update && sudo apt-get install -y libxml2-utils xsltproc
-
-        node bibToJSON.js curriculo.xml > publications.json
-
+        sudo apt install xsltproc libxml2-utils bibutils bibtool -y
+        mkdir lattes
+        cd lattes
+        git clone https://github.com/urbcomp-lab/SLattes.git
+        cd SLattes
+        xsltproc lattes2mods.xsl ../../curriculo.xml > curriculo.mods
+        xml2bib -b -w curriculo.mods > curriculo.bib
+        cp curriculo.bib ../../publications.bib
+        cd ../../
+        node bibToJSON.js publications.bib > publications.json
+        echo "--- Executando publications.php para depuração ---"
+        php -f publications.php
+        echo "--- Fim da execução de depuração ---"
         php -f publications.php > publications.html
         sed -i '/<?php include "publications.php" ?>/{
           r publications.html
           d
         }' index.php
-
-    - name: 🕵️ List remote FTP directory for debugging
-      uses: a-l-p/ftp-ls-action@v1.2.0
-      with:
-        host: ${{ secrets.FTP_SERVER }}
-        user: ${{ secrets.FTP_USERNAME }}
-        password: ${{ secrets.FTP_PASSWORD }}
-        remote_path: "."
 
     - name: 📂 Sync files
       uses: SamKirkland/FTP-Deploy-Action@v4.3.4
