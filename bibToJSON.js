@@ -23,14 +23,14 @@ async function runConverter(filename) {
 
     const publications = [];
 
+    // Process papers in proceedings
     const papersInProceedings = result['CURRICULO-VITAE']['PRODUCAO-BIBLIOGRAFICA']['TRABALHOS-EM-EVENTOS']['TRABALHO-EM-EVENTOS'] || [];
-    const journalArticles = result['CURRICULO-VITAE']['PRODUCAO-BIBLIOGRAFICA']['ARTIGOS-PUBLICADOS']['ARTIGO-PUBLICADO'] || [];
-
     (Array.isArray(papersInProceedings) ? papersInProceedings : [papersInProceedings]).forEach(item => {
         const details = item['DADOS-BASICOS-DO-TRABALHO'];
         const authors = (Array.isArray(item['AUTORES']) ? item['AUTORES'] : [item['AUTORES']]);
 
         const cslItem = {
+            type: 'paper-conference', // ✅ required by citeproc-php
             title: details['TITULO-DO-TRABALHO'],
             issued: {
                 'date-parts': [[details['ANO-DO-TRABALHO'] || '1900']]
@@ -42,11 +42,14 @@ async function runConverter(filename) {
         publications.push(cslItem);
     });
 
+    // Process journal articles
+    const journalArticles = result['CURRICULO-VITAE']['PRODUCAO-BIBLIOGRAFICA']['ARTIGOS-PUBLICADOS']['ARTIGO-PUBLICADO'] || [];
     (Array.isArray(journalArticles) ? journalArticles : [journalArticles]).forEach(item => {
         const details = item['DADOS-BASICOS-DO-ARTIGO'];
         const authors = (Array.isArray(item['AUTORES']) ? item['AUTORES'] : [item['AUTORES']]);
 
         const cslItem = {
+            type: 'article-journal', // ✅ required by citeproc-php
             title: details['TITULO-DO-ARTIGO'],
             issued: {
                 'date-parts': [[details['ANO-DO-ARTIGO'] || '1900']]
@@ -65,6 +68,7 @@ async function runConverter(filename) {
 
 const args = process.argv.slice(2);
 const filename = args[0];
+
 runConverter(filename).then((json) => {
     console.log(JSON.stringify(json, null, 2));
 }).catch(err => {
