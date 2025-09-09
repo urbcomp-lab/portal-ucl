@@ -6,11 +6,18 @@ use Seboettg\CiteProc\CiteProc;
 function groupByYear($data) {
     $grouped = array();
     foreach ($data as $item) {
-        $year = $item->issued->{'date-parts'}[0][0];
+        $issued = (array)$item->issued;
+        $dateParts = $issued['date-parts'][0] ?? [null];
+        $year = $dateParts[0];
+
+        if (!$year) {
+            $year = "Sem ano";
+        }
+
         if (!array_key_exists($year, $grouped)) {
             $grouped[$year] = array();
         }
-        array_push($grouped[$year], $item);
+        $grouped[$year][] = $item;
     }
     return $grouped;
 }
