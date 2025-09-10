@@ -2,7 +2,7 @@
 <html class="no-js" lang="en">
 
 <head>
-    <meta charset="ISO-8859-1">
+    <meta charset="UTF-8">
 
     <meta property="og:title" content="UCL - Urban Computing Lab">
     <meta property="og:description" content="The Urban Computing Lab (UCL) research group at PGCOMP/UFBA">

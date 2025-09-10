@@ -1,77 +1,73 @@
-import { readFile } from 'fs/promises';
+#!/usr/bin/env node
+import { readFile, writeFile } from 'fs/promises';
+import { Buffer } from 'buffer';
 import { Parser } from 'xml2js';
 
 function parseAuthorName(citationName) {
-    if (!citationName || !citationName.includes(',')) {
-        return null;
-    }
+    if (!citationName || !citationName.includes(',')) return null;
+
     const parts = citationName.split(',');
     const family = parts[0].trim();
     const given = parts[1].trim();
-
-    if (!family || !given) {
-        return null;
-    }
+    if (!family || !given) return null;
 
     return { family, given };
 }
 
 async function runConverter(filename) {
-    const xmlData = await readFile(filename, 'utf8');
+    const rawData = await readFile('curriculo.xml');
+    const xmlData = rawData.toString('latin1');
     const parser = new Parser({ explicitArray: false, mergeAttrs: true });
     const result = await parser.parseStringPromise(xmlData);
 
     const publications = [];
 
-    // Process papers in proceedings
-    const papersInProceedings = result['CURRICULO-VITAE']['PRODUCAO-BIBLIOGRAFICA']['TRABALHOS-EM-EVENTOS']['TRABALHO-EM-EVENTOS'] || [];
-    (Array.isArray(papersInProceedings) ? papersInProceedings : [papersInProceedings]).forEach(item => {
+    const papersInEvents = result['CURRICULO-VITAE']['PRODUCAO-BIBLIOGRAFICA']['TRABALHOS-EM-EVENTOS']['TRABALHO-EM-EVENTOS'] || [];
+    (Array.isArray(papersInEvents) ? papersInEvents : [papersInEvents]).forEach(item => {
         const details = item['DADOS-BASICOS-DO-TRABALHO'];
-        const authors = (Array.isArray(item['AUTORES']) ? item['AUTORES'] : [item['AUTORES']]);
+        if (!details) return;
 
+        const authors = (Array.isArray(item['AUTORES']) ? item['AUTORES'] : [item['AUTORES']]);
         const cslItem = {
-            type: 'paper-conference', // ✅ required by citeproc-php
+            type: 'paper-conference',
             title: details['TITULO-DO-TRABALHO'],
-            issued: {
-                'date-parts': [[details['ANO-DO-TRABALHO'] || '1900']]
-            },
-            author: authors
-                .map(author => parseAuthorName(author['NOME-PARA-CITACAO']))
-                .filter(author => author !== null)
+            issued: { 'date-parts': [[details['ANO-DO-TRABALHO'] || '1900']] },
+            author: authors.map(a => parseAuthorName(a['NOME-PARA-CITACAO'])).filter(a => a !== null)
         };
+
+        if (details['NOME-DO-EVENTO']) cslItem['container-title'] = details['NOME-DO-EVENTO'];
+
         publications.push(cslItem);
     });
 
-    // Process journal articles
     const journalArticles = result['CURRICULO-VITAE']['PRODUCAO-BIBLIOGRAFICA']['ARTIGOS-PUBLICADOS']['ARTIGO-PUBLICADO'] || [];
     (Array.isArray(journalArticles) ? journalArticles : [journalArticles]).forEach(item => {
         const details = item['DADOS-BASICOS-DO-ARTIGO'];
-        const authors = (Array.isArray(item['AUTORES']) ? item['AUTORES'] : [item['AUTORES']]);
+        if (!details) return;
 
+        const authors = (Array.isArray(item['AUTORES']) ? item['AUTORES'] : [item['AUTORES']]);
         const cslItem = {
-            type: 'article-journal', // ✅ required by citeproc-php
+            type: 'article-journal',
             title: details['TITULO-DO-ARTIGO'],
-            issued: {
-                'date-parts': [[details['ANO-DO-ARTIGO'] || '1900']]
-            },
-            author: authors
-                .map(author => parseAuthorName(author['NOME-PARA-CITACAO']))
-                .filter(author => author !== null)
+            issued: { 'date-parts': [[details['ANO-DO-ARTIGO'] || '1900']] },
+            author: authors.map(a => parseAuthorName(a['NOME-PARA-CITACAO'])).filter(a => a !== null)
         };
+
+        if (details['NOME-DO-PERIODICO']) cslItem['container-title'] = details['NOME-DO-PERIODICO'];
+
         publications.push(cslItem);
     });
 
-    const finalPublications = publications.filter(pub => pub.author && pub.author.length > 0);
-
-    return finalPublications;
+    return publications.filter(pub => pub.author && pub.author.length > 0);
 }
 
 const args = process.argv.slice(2);
 const filename = args[0];
 
-runConverter(filename).then((json) => {
-    console.log(JSON.stringify(json, null, 2));
-}).catch(err => {
-    console.error("An error occurred during XML to JSON conversion:", err);
-    process.exit(1);
-});
+runConverter(filename)
+    .then(json => writeFile('publications.json', JSON.stringify(json, null, 2), 'utf8'))
+    .then(() => console.log('✅ publications.json gerado com sucesso!'))
+    .catch(err => {
+        console.error('❌ Erro durante a conversão XML -> JSON:', err);
+        process.exit(1);
+    });
