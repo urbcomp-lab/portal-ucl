@@ -6,11 +6,13 @@ use Seboettg\CiteProc\CiteProc;
 function groupByYear($data) {
     $grouped = array();
     foreach ($data as $item) {
-        // "issued" pode não existir
-        if (!isset($item['issued']['date-parts'][0][0])) {
-            $year = "Sem ano";
-        } else {
-            $year = $item['issued']['date-parts'][0][0];
+        $year = "Sem ano";
+
+        if (isset($item->issued) && isset($item->issued->{'date-parts'})) {
+            $dateParts = $item->issued->{'date-parts'};
+            if (is_array($dateParts) && isset($dateParts[0][0])) {
+                $year = $dateParts[0][0];
+            }
         }
 
         if (!array_key_exists($year, $grouped)) {
@@ -20,7 +22,6 @@ function groupByYear($data) {
     }
     return $grouped;
 }
-
 
 function printYearSection($year, $items, $citeProc) {
     echo "<div class=\"row justify-content-center\">
@@ -32,15 +33,15 @@ function printYearSection($year, $items, $citeProc) {
         </div>
     </div>";
 
-    echo "<pre>--- [DEBUG] Verificando publicações do ano: $year ---\n";
+    echo "<pre>--- [DEBUG] Publicações do ano: $year ---\n";
     foreach ($items as $item) {
-        $title = $item['title'] ?? "TÍTULO NÃO ENCONTRADO";
+        $title = $item->title ?? "TÍTULO NÃO ENCONTRADO";
         echo "[DEBUG] Título: $title\n";
 
-        $authors_json = isset($item['author']) ? json_encode($item['author']) : "SEM AUTORES";
+        $authors_json = isset($item->author) ? json_encode($item->author) : "SEM AUTORES";
         echo "[DEBUG] Autores: $authors_json\n";
     }
-    echo "--- [DEBUG] Fim do ano $year ---\n</pre>";
+    echo "--- [DEBUG] Fim do ano $year ---</pre>";
 
     echo $citeProc->render($items, "bibliography");
 }
@@ -54,7 +55,7 @@ try {
     $style = StyleSheet::loadStyleSheet("harvard-cite-them-right");
     $citeProc = new CiteProc($style, "en-US");
 
-    $data = json_decode($dataString, true);
+    $data = json_decode($dataString);
     if (json_last_error() !== JSON_ERROR_NONE) {
         throw new Exception("Erro ao decodificar o JSON: " . json_last_error_msg());
     }
@@ -67,7 +68,7 @@ try {
     }
 
 } catch (Exception $e) {
-    echo "Error loading papers: " . $e->getMessage() . "\n";
-    echo "In file: " . $e->getFile() . " on line " . $e->getLine() . "\n";
+    echo "Error loading papers: " . $e->getMessage() . "<br>";
+    echo "In file: " . $e->getFile() . " on line " . $e->getLine() . "<br>";
 }
 ?>
