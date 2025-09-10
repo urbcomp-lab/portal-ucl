@@ -32,19 +32,12 @@ jobs:
 
     - name: 📚 Prepare bib file
       run: |
-        npm install
+        npm ci
         sudo apt-get update && sudo apt-get install -y libxml2-utils xsltproc
 
-        iconv -f ISO-8859-1 -t UTF-8 curriculo.xml -o curriculo.utf8.xml
-        mv curriculo.utf8.xml curriculo.xml
+        xmllint --noout curriculo.xml
 
         node bibToJSON.js curriculo.xml > publications.json
-
-        php -f publications.php > publications.html
-        sed -i '/<?php include "publications.php" ?>/{
-          r publications.html
-          d
-        }' index.php
 
     - name: 📂 Sync files
       uses: SamKirkland/FTP-Deploy-Action@v4.3.4
