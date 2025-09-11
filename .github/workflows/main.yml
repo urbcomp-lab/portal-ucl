@@ -53,7 +53,7 @@ jobs:
         server: ${{ secrets.FTP_SERVER }}
         username: ${{ secrets.FTP_USERNAME }}
         password: ${{ secrets.FTP_PASSWORD }}
-        server-dir: public_html/
+        server-dir: /sharedirs/sharedir01/adriano.maia/public_html/
         force: true
         dangerous-clean-slate: true
         exclude: |
