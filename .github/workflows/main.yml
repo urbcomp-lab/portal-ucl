@@ -37,10 +37,7 @@ jobs:
 
         xmllint --noout curriculo.xml
 
-        node bibToJSON.js curriculo.xml > publications.json
-
-    - name: 🔄 Limpar cache de deploy
-      run: rm -f .ftp-deploy-sync-state.json
+        node bibToJSON.js curriculo.xml
 
     - name: 📂 Sync files
       uses: SamKirkland/FTP-Deploy-Action@v4.3.4
