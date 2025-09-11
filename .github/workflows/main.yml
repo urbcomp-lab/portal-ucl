@@ -46,6 +46,11 @@ jobs:
         echo "------------------------------------------"
         ls -la
 
+    - name: 📦 Move publications.json to public_html
+      run: |
+        mkdir -p public_html
+        mv publications.json public_html/publications.json
+
     - name: 📂 Sync files
       uses: SamKirkland/FTP-Deploy-Action@v4.3.4
       with:
@@ -54,7 +59,6 @@ jobs:
         username: ${{ secrets.FTP_USERNAME }}
         password: ${{ secrets.FTP_PASSWORD }}
         server-dir: public_html/
-        dangerous-clean-slate: true
         exclude: |
           .git/**
           .git**
