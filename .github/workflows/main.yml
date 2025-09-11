@@ -46,6 +46,29 @@ jobs:
         echo "------------------------------------------"
         ls -la
 
+    - name: 🔬 Full Diagnostic of Local and Remote Paths
+      run: |
+        # === PARTE 1: DIAGNÓSTICO LOCAL (no runner do GitHub) ===
+        echo "--- [LOCAL] 1. Onde estou agora? (pwd) ---"
+        pwd
+
+        echo "--- [LOCAL] 2. O que tem no diretório pai? (ls -la ..) ---"
+        ls -la ..
+
+        echo "--- [LOCAL] 3. Qual é a estrutura do meu projeto? (tree) ---"
+        sudo apt-get update && sudo apt-get install -y tree lftp
+        tree -L 3
+
+        echo "--- [LOCAL] 4. Detalhes dos arquivos que serão enviados (ls -laR) ---"
+        ls -laR
+
+        # === PARTE 2: DIAGNÓSTICO REMOTO (no seu servidor FTP) ===
+        echo "--- [REMOTO] 1. Onde eu 'pouso' ao conectar no FTP? (pwd e ls -la) ---"
+        lftp -c "set ftp:ssl-allow no; open -u ${{ secrets.FTP_USERNAME }},${{ secrets.FTP_PASSWORD }} ${{ secrets.FTP_SERVER }}; pwd; ls -la;"
+
+        echo "--- [REMOTO] 2. O que tem dentro de 'public_html'? (ls -laR public_html) ---"
+        lftp -c "set ftp:ssl-allow no; open -u ${{ secrets.FTP_USERNAME }},${{ secrets.FTP_PASSWORD }} ${{ secrets.FTP_SERVER }}; ls -laR public_html/;"
+
     - name: 📂 Sync files
       uses: SamKirkland/FTP-Deploy-Action@v4.3.4
       with:
