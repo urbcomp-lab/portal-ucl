@@ -39,6 +39,13 @@ jobs:
 
         node bibToJSON.js curriculo.xml
 
+    - name: 🧐 Verify generated publications.json
+      run: |
+        echo "--- publications.json generated ---"
+        cat publications.json
+        echo "------------------------------------------"
+        ls -la
+
     - name: 📂 Sync files
       uses: SamKirkland/FTP-Deploy-Action@v4.3.4
       with:
