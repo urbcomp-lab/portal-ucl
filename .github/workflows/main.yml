@@ -39,12 +39,16 @@ jobs:
 
         node bibToJSON.js curriculo.xml
 
-    - name: 🧐 Verify generated publications.json
+    - name: 💥 Nuke old sync state files from remote server
       run: |
-        echo "--- publications.json generated ---"
-        cat publications.json
-        echo "------------------------------------------"
-        ls -la
+        echo "--- Installing lftp to perform remote cleanup ---"
+        sudo apt-get update && sudo apt-get install -y lftp
+        echo "--- Connecting to FTP and attempting to delete all known old sync files ---"
+        lftp -c "set ftp:ssl-allow no; \
+                 open -u ${{ secrets.FTP_USERNAME }},${{ secrets.FTP_PASSWORD }} ${{ secrets.FTP_SERVER }}; \
+                 catch rm /sharedirs/sharedir01/adriano.maia/public_html/.ftp-deploy-sync-state.json; \
+                 catch rm public_html/.ftp-deploy-sync-state.json; \
+                 echo 'Cleanup attempt finished.'"
 
     - name: 🔬 Full Diagnostic of Local and Remote Paths
       run: |
@@ -84,9 +88,7 @@ jobs:
         server: ${{ secrets.FTP_SERVER }}
         username: ${{ secrets.FTP_USERNAME }}
         password: ${{ secrets.FTP_PASSWORD }}
-        server-dir: /sharedirs/sharedir01/adriano.maia/public_html/
-        force: true
-        dangerous-clean-slate: true
+        server-dir: public_html/
         exclude: |
           .git/**
           .git**
