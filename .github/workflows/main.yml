@@ -46,22 +46,8 @@ jobs:
         echo "------------------------------------------"
         ls -la
 
-    - name: 📂 Sync files
-      uses: SamKirkland/FTP-Deploy-Action@v4.3.4
-      with:
-        security: "loose"
-        server: ${{ secrets.FTP_SERVER }}
-        username: ${{ secrets.FTP_USERNAME }}
-        password: ${{ secrets.FTP_PASSWORD }}
-        server-dir: /sharedirs/sharedir01/adriano.maia/public_html/
-        dangerous-clean-slate: true
-        exclude: |
-          .git/**
-          .git**
-          .git*/**
-          **/.git*
-          **/.git*/**
-          /node_modules/**
-          **/node_modules/**
-          /vendor/**
-          **/vendor/**
+    - name: 📂 Sync files with lftp
+      run: |
+        sudo apt-get update
+        sudo apt-get install lftp -y
+        lftp -c "set ftp:ssl-allow no; open -u ${{ secrets.FTP_USERNAME }},${{ secrets.FTP_PASSWORD }} ${{ secrets.FTP_SERVER }}; mirror -R --delete --verbose --exclude-glob .git* --exclude node_modules/ --exclude vendor/ --exclude lattes/ . public_html/"
