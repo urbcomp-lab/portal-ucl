@@ -69,6 +69,14 @@ jobs:
         echo "--- [REMOTO] 2. O que tem dentro de 'public_html'? (ls -laR public_html) ---"
         lftp -c "set ftp:ssl-allow no; open -u ${{ secrets.FTP_USERNAME }},${{ secrets.FTP_PASSWORD }} ${{ secrets.FTP_SERVER }}; ls -laR public_html/;"
 
+        echo "--- [REMOTO] 2. O que tem dentro de 'sharedirs'? (ls -laR sharedirs/) ---"
+        lftp -c "set ftp:ssl-allow no; open -u ${{ secrets.FTP_USERNAME }},${{ secrets.FTP_PASSWORD }} ${{ secrets.FTP_SERVER }}; ls -laR sharedirs/;"
+
+        echo "--- [REMOTO] 2. O que tem dentro de '/sharedirs/sharedir01/***'? (ls -laR /sharedirs/sharedir01/) ---"
+        lftp -c "set ftp:ssl-allow no; open -u ${{ secrets.FTP_USERNAME }},${{ secrets.FTP_PASSWORD }} ${{ secrets.FTP_SERVER }}; ls -laR /sharedirs/sharedir01/;"
+
+
+
     - name: 📂 Sync files
       uses: SamKirkland/FTP-Deploy-Action@v4.3.4
       with:
