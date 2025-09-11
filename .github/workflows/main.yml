@@ -62,7 +62,5 @@ jobs:
           **/.git*/**
           /node_modules/**
           **/node_modules/**
-          /lattes/**
-          **/lattes**
           /vendor/**
           **/vendor/**
