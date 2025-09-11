@@ -39,6 +39,9 @@ jobs:
 
         node bibToJSON.js curriculo.xml > publications.json
 
+    - name: 🔄 Limpar cache de deploy
+      run: rm -f .ftp-deploy-sync-state.json
+
     - name: 📂 Sync files
       uses: SamKirkland/FTP-Deploy-Action@v4.3.4
       with:
@@ -47,6 +50,7 @@ jobs:
         username: ${{ secrets.FTP_USERNAME }}
         password: ${{ secrets.FTP_PASSWORD }}
         server-dir: public_html/
+        force: true
         exclude: |
           .git/**
           .git**
