@@ -30,8 +30,10 @@ function printYearSection($year, $items, $citeProc) {
 }
 
 try {
-    $dataString = file_get_contents("publications.json");
-    if ($dataString === false) throw new Exception("Erro ao ler publications.json");
+    $jsonPath = __DIR__ . '/publications.json';
+    var_dump($jsonPath);
+    $dataString = file_get_contents($jsonPath);
+    if ($dataString === false) throw new Exception("Erro ao ler $jsonPath");
 
     $dataString = mb_convert_encoding($dataString, 'UTF-8', 'UTF-8');
     $data = json_decode($dataString);
