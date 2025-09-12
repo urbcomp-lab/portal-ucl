@@ -15,10 +15,14 @@ jobs:
         with:
           node-version: '18'
 
-      - name: 🐘 Setup PHP
+      - name: 🐘 Setup PHP and Composer
         uses: shivammathur/setup-php@v2
         with:
           php-version: '8.1'
+      - name: 📦 Install Composer Dependencies
+        uses: ramsey/composer-install@v2
+        with:
+          dependency-versions: "locked"
 
       - name: 📚 Prepare static HTML from publications
         run: |
