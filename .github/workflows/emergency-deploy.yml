@@ -1,0 +1,21 @@
+name: 🚨 Emergency Deploy
+
+on:
+  workflow_dispatch:
+
+jobs:
+  emergency-redeploy:
+    name: Force Redeploy to Production
+    runs-on: ubuntu-latest
+    steps:
+      - name: 🚚 Get latest code
+        uses: actions/checkout@v3
+
+      - name: 🚀 Force upload all files via lftp
+        run: |
+          sudo apt-get update && sudo apt-get install -y lftp
+          lftp -c "set ftp:ssl-allow no; \
+                   open -u ${{ secrets.FTP_USERNAME }},${{ secrets.FTP_PASSWORD }} ${{ secrets.FTP_SERVER }}; \
+                   mirror --ignore-time --reverse --delete --verbose \
+                   . \
+                   /sharedirs/sharedir01/adriano.maia/public_html/"
