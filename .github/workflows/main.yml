@@ -1,10 +1,10 @@
-name: 🚀 Deploy website on push2
+name: 🚀 Deploy website on push
 on:
   push:
     branches: [ main ]
 jobs:
   web-deploy:
-    name: 🎉 Deploy
+    name: 🎉 Build and Deploy
     runs-on: ubuntu-latest
     steps:
       - name: 🚚 Get latest code
@@ -15,34 +15,43 @@ jobs:
         with:
           node-version: '18'
 
-      - name: 📦 Install Node dependencies
-        run: npm ci
-
-      - name: 📚 Generate publications.json file
-        run: |
-          sudo apt-get update && sudo apt-get install -y libxml2-utils xsltproc
-          xmllint --noout curriculo.xml
-          node bibToJSON.js curriculo.xml
-          echo "--- Verifying publications.json was created ---"
-          ls -la publications.json
-
-      - name: 🐘 Setup PHP and Composer
+      - name: 🐘 Setup PHP
         uses: shivammathur/setup-php@v2
         with:
           php-version: '8.1'
-      - name: 📦 Install Composer Dependencies
-        uses: ramsey/composer-install@v2
-        with:
-          dependency-versions: "locked"
 
-      - name: 🚀 Deploy all files to production server
+      - name: 📚 Prepare static HTML from publications
         run: |
-          sudo apt-get install -y lftp
+          npm ci
+
+          echo "--- Generating publications.json ---"
+          node bibToJSON.js curriculo.xml
+
+          echo "--- Generating publications.html ---"
+          php -f publications.php > publications.html
+
+          echo "--- Injecting HTML into index.php ---"
+          sed -i '/<?php include "publications.php" ?>/{
+            r publications.html
+            d
+          }' index.php
+          echo "--- Injection complete. index.php is now static. ---"
+
+      - name: 🚀 Deploy essential files to production
+        run: |
+          sudo apt-get update && sudo apt-get install -y lftp
           lftp -c "set ftp:ssl-allow no; \
                    open -u ${{ secrets.FTP_USERNAME }},${{ secrets.FTP_PASSWORD }} ${{ secrets.FTP_SERVER }}; \
                    mirror --ignore-time --reverse --delete --verbose \
                           --exclude .git* \
                           --exclude .github* \
                           --exclude node_modules/ \
+                          --exclude vendor/ \
+                          --exclude curriculo.xml \
+                          --exclude bibToJSON.js \
+                          --exclude publications.php \
+                          --exclude publications.html \
+                          --exclude publications.json \
+                          --exclude composer.* \
                           . \
                           /sharedirs/sharedir01/adriano.maia/public_html/"
