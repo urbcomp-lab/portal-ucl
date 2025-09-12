@@ -31,7 +31,6 @@ function printYearSection($year, $items, $citeProc) {
 
 try {
     $jsonPath = __DIR__ . '/publications.json';
-    var_dump($jsonPath);
     $dataString = file_get_contents($jsonPath);
     if ($dataString === false) throw new Exception("Erro ao ler $jsonPath");
 
