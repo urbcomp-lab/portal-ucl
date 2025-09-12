@@ -7,97 +7,42 @@ jobs:
     name: 🎉 Deploy
     runs-on: ubuntu-latest
     steps:
-    - name: 🚚 Get latest code
-      uses: actions/checkout@v2
+      - name: 🚚 Get latest code
+        uses: actions/checkout@v3
 
-    - uses: "shivammathur/setup-php@v2"
-      with:
-        php-version: "8.1"
-        extensions: curl, fileinfo, intl, mbstring, openssl, simplexml
-    - uses: "ramsey/composer-install@v2"
-      with:
-        ignore-cache: true
+      - name: 🟢 Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
 
-    - name: 🔄 Rebuild autoloader cache
-      run: composer dump-autoload --optimize
+      - name: 📦 Install Node dependencies
+        run: npm ci
 
-    - name: 🧹 Clear PHP Opcache
-      run: php -r "if (function_exists('opcache_reset')) { opcache_reset(); echo 'Opcache cleared successfully.'; }"
+      - name: 📚 Generate publications.json file
+        run: |
+          sudo apt-get update && sudo apt-get install -y libxml2-utils xsltproc
+          xmllint --noout curriculo.xml
+          node bibToJSON.js curriculo.xml
+          echo "--- Verifying publications.json was created ---"
+          ls -la publications.json
 
-    - name: 🧐 Verify installed packages
-      run: |
-        echo "--- Verificando a versão de seboettg/collection ---"
-        composer show seboettg/collection
-        echo "---------------------------------------------------"
+      - name: 🐘 Setup PHP and Composer
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.1'
+      - name: 📦 Install Composer Dependencies
+        uses: ramsey/composer-install@v2
+        with:
+          dependency-versions: "locked"
 
-    - name: 📚 Prepare bib file
-      run: |
-        npm ci
-        sudo apt-get update && sudo apt-get install -y libxml2-utils xsltproc
-
-        xmllint --noout curriculo.xml
-
-        node bibToJSON.js curriculo.xml
-
-    - name: 💥 Nuke old sync state files from remote server
-      run: |
-        echo "--- Installing lftp to perform remote cleanup ---"
-        sudo apt-get update && sudo apt-get install -y lftp
-        echo "--- Connecting to FTP and attempting to delete all known old sync files ---"
-        lftp -c "set ftp:ssl-allow no; \
-                 open -u ${{ secrets.FTP_USERNAME }},${{ secrets.FTP_PASSWORD }} ${{ secrets.FTP_SERVER }}; \
-                 catch rm /sharedirs/sharedir01/adriano.maia/public_html/.ftp-deploy-sync-state.json; \
-                 catch rm public_html/.ftp-deploy-sync-state.json; \
-                 echo 'Cleanup attempt finished.'"
-
-    - name: 🔬 Full Diagnostic of Local and Remote Paths
-      run: |
-        # === PARTE 1: DIAGNÓSTICO LOCAL (no runner do GitHub) ===
-        echo "--- [LOCAL] 1. Onde estou agora? (pwd) ---"
-        pwd
-
-        echo "--- [LOCAL] 2. O que tem no diretório pai? (ls -la ..) ---"
-        ls -la ..
-
-        echo "--- [LOCAL] 3. Qual é a estrutura do meu projeto? (tree) ---"
-        sudo apt-get update && sudo apt-get install -y tree lftp
-        tree -L 3
-
-        echo "--- [LOCAL] 4. Detalhes dos arquivos que serão enviados (ls -laR) ---"
-        ls -laR
-
-        # === PARTE 2: DIAGNÓSTICO REMOTO (no seu servidor FTP) ===
-        echo "--- [REMOTO] 1. Onde eu 'pouso' ao conectar no FTP? (pwd e ls -la) ---"
-        lftp -c "set ftp:ssl-allow no; open -u ${{ secrets.FTP_USERNAME }},${{ secrets.FTP_PASSWORD }} ${{ secrets.FTP_SERVER }}; pwd; ls -la;"
-
-        echo "--- [REMOTO] 2. O que tem dentro de 'public_html'? (ls -laR public_html) ---"
-        lftp -c "set ftp:ssl-allow no; open -u ${{ secrets.FTP_USERNAME }},${{ secrets.FTP_PASSWORD }} ${{ secrets.FTP_SERVER }}; ls -laR public_html/;"
-
-        echo "--- [REMOTO] 2. O que tem dentro de 'sharedirs'? (ls -laR sharedirs/) ---"
-        lftp -c "set ftp:ssl-allow no; open -u ${{ secrets.FTP_USERNAME }},${{ secrets.FTP_PASSWORD }} ${{ secrets.FTP_SERVER }}; ls -laR sharedirs/;"
-
-        echo "--- [REMOTO] 2. O que tem dentro de '/sharedirs/sharedir01/***'? (ls -laR /sharedirs/sharedir01/) ---"
-        lftp -c "set ftp:ssl-allow no; open -u ${{ secrets.FTP_USERNAME }},${{ secrets.FTP_PASSWORD }} ${{ secrets.FTP_SERVER }}; ls -laR /sharedirs/sharedir01/;"
-
-
-
-    - name: 📂 Sync files
-      uses: SamKirkland/FTP-Deploy-Action@v4.3.4
-      with:
-        security: "loose"
-        server: ${{ secrets.FTP_SERVER }}
-        username: ${{ secrets.FTP_USERNAME }}
-        password: ${{ secrets.FTP_PASSWORD }}
-        server-dir: public_html/
-        exclude: |
-          .git/**
-          .git**
-          .git*/**
-          **/.git*
-          **/.git*/**
-          /node_modules/**
-          **/node_modules/**
-          /lattes/**
-          **/lattes**
-          /vendor/**
-          **/vendor/**
+      - name: 🚀 Deploy all files to production server
+        run: |
+          sudo apt-get install -y lftp
+          lftp -c "set ftp:ssl-allow no; \
+                   open -u ${{ secrets.FTP_USERNAME }},${{ secrets.FTP_PASSWORD }} ${{ secrets.FTP_SERVER }}; \
+                   mirror --ignore-time --reverse --delete --verbose \
+                          --exclude .git* \
+                          --exclude .github* \
+                          --exclude node_modules/ \
+                          . \
+                          /sharedirs/sharedir01/adriano.maia/public_html/"
