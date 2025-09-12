@@ -199,7 +199,7 @@
                             <i><img src="assets/images/edge.svg" width="45px" style="filter: invert(100%) sepia(100%) saturate(100%);"></i>
                         </div>
                         <div class="services-content mt-30">
-                            <h4 class="services-title"><a href="#">Edge Cloud Continuous</a></h4>
+                            <h4 class="services-title"><a href="#">Edge-Cloud Continuum</a></h4>
                             <p class="text">Computation closer to the sources of data.</p>
                             <!--                            <a class="more" href="#">Learn More <i class="lni-chevron-right"></i></a>-->
                         </div>
@@ -504,7 +504,7 @@
                         </div>
                         <div class="team-content">
                             <h5 class="holder-name"><a href="#">Marcus Freire</a></h5>
-                            <p class="text">Master's Degree</p>
+                            <p class="text">PhD Candidate</p>
                         </div>
                     </div> <!-- single team -->
                 </div>
