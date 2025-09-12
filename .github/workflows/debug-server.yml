@@ -1,0 +1,21 @@
+name: 🕵️‍♂️ Server File Inspector
+
+on:
+  workflow_dispatch:
+
+jobs:
+  check-files:
+    name: Check file status on server
+    runs-on: ubuntu-latest
+    steps:
+      - name: 🕵️‍♂️ Check file on server via lftp
+        run: |
+          sudo apt-get update && sudo apt-get install -y lftp
+          lftp -c "set ftp:ssl-allow no; \
+                   open -u ${{ secrets.FTP_USERNAME }},${{ secrets.FTP_PASSWORD }} ${{ secrets.FTP_SERVER }}; \
+                   echo '--- Status do publications.json ---'; \
+                   ls -la /sharedirs/sharedir01/adriano.maia/public_html/publications.json; \
+                   echo '--- Status do script PHP que o lê ---'; \
+                   ls -la /sharedirs/sharedir01/adriano.maia/public_html/publications.php; \
+                   echo '--- Listagem geral da pasta public_html ---'; \
+                   ls -la /sharedirs/sharedir01/adriano.maia/public_html/;"
