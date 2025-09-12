@@ -1,4 +1,4 @@
-name: 🚨 Emergency Deploy
+name: 🚨 Emergency Deploy & Fix
 
 on:
   workflow_dispatch:
@@ -11,11 +11,22 @@ jobs:
       - name: 🚚 Get latest code
         uses: actions/checkout@v3
 
-      - name: 🚀 Force upload all files via lftp
+      - name: 📦 Install Composer Dependencies
+        run: composer install --no-dev --optimize-autoloader
+
+      - name: 🚀 Force upload all files and fix permissions
         run: |
           sudo apt-get update && sudo apt-get install -y lftp
           lftp -c "set ftp:ssl-allow no; \
                    open -u ${{ secrets.FTP_USERNAME }},${{ secrets.FTP_PASSWORD }} ${{ secrets.FTP_SERVER }}; \
                    mirror --ignore-time --reverse --delete --verbose \
-                   . \
-                   /sharedirs/sharedir01/adriano.maia/public_html/"
+                          --exclude .git* \
+                          --exclude .github* \
+                          . \
+                          /sharedirs/sharedir01/adriano.maia/public_html/; \
+
+                   quote SITE chmod -R 755 /sharedirs/sharedir01/adriano.maia/public_html/; \
+
+                   quote SITE chmod 644 /sharedirs/sharedir01/adriano.maia/public_html/*.*; \
+
+                   echo 'Deploy and permission fix complete.'"
